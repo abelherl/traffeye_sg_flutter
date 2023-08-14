@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/injection.dart';
+import 'package:traffeye_sg_flutter/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: AppInjections(),
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: TraffEyeAppTheme.lightTheme,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
