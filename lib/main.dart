@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/injection.dart';
-import 'package:traffeye_sg_flutter/theme.dart';
+import 'package:traffeye_sg_flutter/traffeye_app_theme.dart';
 
 void main() {
   runApp(const MyApp());
