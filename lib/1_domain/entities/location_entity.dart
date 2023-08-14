@@ -1,0 +1,23 @@
+class LocationEntity {
+  final String name;
+  final double latitude;
+  final double longitude;
+
+  LocationEntity({
+    this.name = '',
+    required this.latitude,
+    required this.longitude,
+  });
+
+  factory LocationEntity.fromJson(Map<String, dynamic> json) {
+    return LocationEntity(
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+    );
+  }
+
+  // void updateNameFromCoordinates() async {
+  //   name = (await GeocodingPlatform.instance
+  //       .placemarkFromCoordinates(latitude, longitude))[0].name ?? '';
+  // }
+}
