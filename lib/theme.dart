@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-abstract class TraffEyeAppTheme {
+abstract class AppTheme {
   // * Static Colors - Light
   static const Color _lightPrimaryColor = Color(0xFF143A62);
   static const Color _lightPrimaryVariantColor = Color(0xFF0F2A48);
@@ -23,33 +24,45 @@ abstract class TraffEyeAppTheme {
 
   static final TextStyle _lightDisplayText = _baseTextStyle.copyWith(
     color: _lightOnBackgroundColor,
-    fontSize: 21,
+    fontSize: 21.sp,
     fontWeight: FontWeight.w600,
+    letterSpacing: 0,
   );
 
   static final TextStyle _lightTitleText = _baseTextStyle.copyWith(
-    color: _lightOnBackgroundColor,
-    fontSize: 17,
+    color: _lightPrimaryColor,
+    fontSize: 17.sp,
     fontWeight: FontWeight.w600,
+    letterSpacing: 0,
   );
 
   static final TextStyle _lightBodyText = _baseTextStyle.copyWith(
     color: _lightOnBackgroundColor,
     fontWeight: FontWeight.w400,
-    fontSize: 15,
+    fontSize: 15.sp,
+    letterSpacing: 0,
   );
 
   static final TextStyle _lightCaptionText = _baseTextStyle.copyWith(
     color: _lightCaptionColor,
     fontWeight: FontWeight.w400,
-    fontSize: 13,
+    fontSize: 13.sp,
+    letterSpacing: 0,
+  );
+
+  static final TextStyle _lightLabelText = _baseTextStyle.copyWith(
+    color: _lightOnPrimaryColor,
+    fontWeight: FontWeight.w700,
+    fontSize: 13.sp,
+    letterSpacing: 0,
   );
 
   static final TextTheme _lightTextTheme = TextTheme(
     displayLarge: _lightDisplayText,
     titleLarge: _lightTitleText,
+    labelLarge: _lightLabelText,
+    labelSmall: _lightCaptionText,
     bodyLarge: _lightBodyText,
-    bodySmall: _lightCaptionText,
   );
 
   // * Theme
