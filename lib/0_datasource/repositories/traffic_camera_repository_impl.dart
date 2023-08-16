@@ -11,7 +11,7 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
 
   @override
   Future<Either<Failure, List<TrafficCameraEntity>>> getSnapshotsFromRemote() async {
-    await Future.delayed(Duration(seconds: 2));
-    return Right([]);
+    await Future.delayed(const Duration(seconds: 2));
+    return const Right([]);
   }
 }
