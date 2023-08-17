@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/home/home_page.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/dashboard_page.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -85,7 +85,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           context,
           PageRouteBuilder(
               transitionDuration: const Duration(seconds: 1),
-              pageBuilder: (_, __, ___) => const HomePage()));
+              pageBuilder: (_, __, ___) => const DashboardPage()));
     });
   }
 }

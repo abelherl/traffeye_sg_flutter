@@ -4,10 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/saved_cameras_section.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +43,21 @@ class HomePage extends StatelessWidget {
             ),
             Container(
               height: 1000,
-              padding: EdgeInsets.all(16.w),
+              padding: EdgeInsets.symmetric(vertical: 16.w),
               decoration: BoxDecoration(
                 color: colorScheme.background,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ThemedText(
-                    IntlHelper.splashCaption.tr,
-                    themedTextStyle: ThemedTextStyle.title,
+                  const SavedCamerasSection(),
+                  SizedBox(height: 24.w),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: ThemedText(
+                      IntlHelper.features.tr,
+                      themedTextStyle: ThemedTextStyle.title,
+                    ),
                   ),
                 ],
               ),

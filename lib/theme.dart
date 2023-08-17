@@ -86,19 +86,19 @@ abstract class AppTheme {
     bottomAppBarTheme: const BottomAppBarTheme(color: _lightAppBarColor),
   );
 
-  Color getPositiveColor(bool isDarkTheme) {
+  static Color getPositiveColor({required bool isDarkTheme}) {
     return isDarkTheme ? _lightPositiveColor : _lightPositiveColor;
   }
 
-  Color getNegativeColor(bool isDarkTheme) {
+  static Color getNegativeColor({required bool isDarkTheme}) {
     return isDarkTheme ? _lightNegativeColor : _lightNegativeColor;
   }
 
-  Color getDisableColor(bool isDarkTheme) {
+  static Color getDisableColor({required bool isDarkTheme}) {
     return isDarkTheme ? _lightDisableColor : _lightDisableColor;
   }
 
-  Color getHintColor(bool isDarkTheme) {
+  static Color getHintColor({required bool isDarkTheme}) {
     return isDarkTheme ? _lightHintColor : _lightHintColor;
   }
 }

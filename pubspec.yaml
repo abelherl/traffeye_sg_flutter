@@ -23,9 +23,10 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^5.1.0
   hive: ^2.2.3
-  http: any
+  shimmer: ^3.0.0
   simple_rich_text: ^2.0.49
-  smooth_page_indicator: ^1.1.0
+  timeago: ^3.5.0
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_test:

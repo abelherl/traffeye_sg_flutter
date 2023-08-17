@@ -18,12 +18,19 @@ abstract class IntlHelper {
   static const errorNoSavedCamerasSubtitle = 'error_no_saved_cameras_subtitle';
   static const features = 'features';
   static const grid = 'grid';
-  static const lastUpdated = 'last_updated';
   static const list = 'list';
   static const save = 'save';
   static const savedCameras = 'saved_cameras';
   static const searchCameraHint = 'search_camera_hint';
   static const splashCaption = 'splash_caption';
+
+  // * Last Updated
+  static const lastUpdated = 'last_updated';
+  static const aLongTimeAgo = 'a_long_time_ago';
+  static const daysAgo = 'days_ago';
+  static const hoursAgo = 'hours_ago';
+  static const justNow = 'just_now';
+  static const minutesAgo = 'minutes_ago';
 
   // * Profile
   static const about = 'about';

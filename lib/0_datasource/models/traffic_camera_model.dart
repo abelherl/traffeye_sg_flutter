@@ -6,9 +6,9 @@ class TrafficCameraModel extends TrafficCameraEntity with EquatableMixin {
   TrafficCameraModel({
       required super.cameraId, required super.timestamp, required super.imageUrl, required super.location});
 
-  factory TrafficCameraModel.fromJson(Map<String, dynamic> json) {
+  factory TrafficCameraModel.fromJson(Map json) {
     return TrafficCameraModel(
-      timestamp: json['timestamp'],
+      timestamp: DateTime.parse(json['timestamp']),
       imageUrl: json['image'],
       location: LocationEntity.fromJson(json['location']),
       cameraId: json['camera_id'],

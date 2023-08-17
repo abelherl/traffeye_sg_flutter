@@ -17,12 +17,19 @@ abstract class IntlEnUs {
     IntlHelper.errorNoSavedCamerasSubtitle: 'Add a saved camera through *Explore Widgets*',
     IntlHelper.features: 'Features',
     IntlHelper.grid: 'Grid',
-    IntlHelper.lastUpdated: 'Last updated ',
     IntlHelper.list: 'List',
     IntlHelper.save: 'Save',
     IntlHelper.savedCameras: 'Saved Cameras',
     IntlHelper.searchCameraHint: 'Search among @count cameras',
     IntlHelper.splashCaption: 'Singapore Traffic Camera Snapshots',
+
+    // * Last Updated
+    IntlHelper.lastUpdated: 'Last updated',
+    IntlHelper.daysAgo: 'days ago',
+    IntlHelper.hoursAgo: 'hours ago',
+    IntlHelper.justNow: 'just now',
+    IntlHelper.minutesAgo: 'minutes ago',
+    IntlHelper.aLongTimeAgo: 'a long time ago',
 
     // * Profile
     IntlHelper.about: 'About',
