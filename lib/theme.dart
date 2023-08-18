@@ -20,13 +20,13 @@ abstract class AppTheme {
   static const Color _lightNegativeColor = Color(0xFFCB4444);
 
   // * Text Style - Light
-  static final TextStyle _baseTextStyle = GoogleFonts.montserrat();
+  static final TextStyle _baseTextStyle = GoogleFonts.montserrat()
+      .copyWith(fontFamily: GoogleFonts.poppins().fontFamily);
 
   static final TextStyle _lightDisplayText = _baseTextStyle.copyWith(
     color: _lightOnBackgroundColor,
     fontSize: 21.sp,
-    fontWeight: FontWeight.w600,
-    letterSpacing: 0,
+    fontWeight: FontWeight.w700,
   );
 
   static final TextStyle _lightTitleText = _baseTextStyle.copyWith(

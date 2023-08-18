@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:traffeye_sg_flutter/0_datasource/models/traffic_camera_model.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/location_entity.dart';
 
@@ -15,12 +16,12 @@ class TrafficCameraEntity with EquatableMixin {
     required this.location,
   });
 
-  factory TrafficCameraEntity.fromModel(TrafficCameraModel model) {
+  factory TrafficCameraEntity.fromModel(TrafficCameraModel model, {required LocationEntity location}) {
     return TrafficCameraEntity(
       cameraId: model.cameraId,
       timestamp: model.timestamp,
       imageUrl: model.imageUrl,
-      location: model.location,
+      location: location,
     );
   }
 

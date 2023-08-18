@@ -6,6 +6,8 @@ abstract class AssetsPathHelper {
 
   // * Images PNG
   static const imagesPngAbelHerl = '${imagesPng}img_abelherl.png';
+  static const imagesExplore = '${imagesPng}img_explore.png';
+  static const imagesWidget = '${imagesPng}img_widgets.png';
 
   // * Vectors
   static const vectorsFilled = '${vectors}filled/';
@@ -30,9 +32,7 @@ abstract class AssetsPathHelper {
   static const filledWarning = '${vectorsFilled}ic_warning.svg';
 
   // * Vectors - Images
-  static const imagesExplore = '${vectorsImages}img_explore.svg';
   static const imagesFlutter = '${vectorsImages}img_flutter.svg';
-  static const imagesWidget = '${vectorsImages}img_widget.svg';
 
   // * Vectors - Outlined
   static const outlinedBookmark = '${vectorsOutlined}ic_bookmark.svg';

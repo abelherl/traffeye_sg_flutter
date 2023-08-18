@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/features_section.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/saved_cameras_section.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
@@ -16,7 +17,7 @@ class DashboardPage extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -42,7 +43,6 @@ class DashboardPage extends StatelessWidget {
               ),
             ),
             Container(
-              height: 1000,
               padding: EdgeInsets.symmetric(vertical: 16.w),
               decoration: BoxDecoration(
                 color: colorScheme.background,
@@ -52,13 +52,7 @@ class DashboardPage extends StatelessWidget {
                 children: [
                   const SavedCamerasSection(),
                   SizedBox(height: 24.w),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: ThemedText(
-                      IntlHelper.features.tr,
-                      themedTextStyle: ThemedTextStyle.title,
-                    ),
-                  ),
+                  const FeaturesSection(),
                 ],
               ),
             ),
