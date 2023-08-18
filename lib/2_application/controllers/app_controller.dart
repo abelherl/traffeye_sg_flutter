@@ -14,7 +14,6 @@ class AppController extends GetxController {
   final _isSavedCamerasActive = true.obs;
   final _isExploreCamerasActive = true.obs;
   final _isHomeWidgetsActive = true.obs;
-  final _isOffline = false.obs;
   final _selectedDashboardLayout = DashboardLayout.carousel.obs;
   final currentIndex = 0.obs;
 

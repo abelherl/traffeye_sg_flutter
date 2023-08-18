@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/dashboard_page.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/splash/splash_screen_page.dart';
 import 'package:traffeye_sg_flutter/injection.dart';
 import 'package:traffeye_sg_flutter/theme.dart';
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               translationsKeys: AppTranslation.translationsKeys,
               locale: Get.deviceLocale,
-              home: const DashboardPage(),
+              home: const SplashScreenPage(),
             );
           },
         ),

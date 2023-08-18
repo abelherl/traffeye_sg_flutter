@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:traffeye_sg_flutter/0_datasource/models/traffic_camera_model.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/location_entity.dart';
 

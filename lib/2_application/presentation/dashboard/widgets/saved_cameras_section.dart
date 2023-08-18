@@ -32,8 +32,8 @@ class SavedCamerasSection extends StatelessWidget {
                 themedTextStyle: ThemedTextStyle.title,
               ),
               Obx(
-                    () => ThemedText(
-                  cameraController.lastUpdated,
+                () => ThemedText(
+                  cameraController.lastUpdatedString.value,
                   themedTextStyle: ThemedTextStyle.caption,
                 ),
               ),
