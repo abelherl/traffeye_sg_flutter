@@ -15,9 +15,4 @@ class LocationEntity {
       longitude: json['longitude'],
     );
   }
-
-  // void updateNameFromCoordinates() async {
-  //   name = (await GeocodingPlatform.instance
-  //       .placemarkFromCoordinates(latitude, longitude))[0].name ?? '';
-  // }
 }
