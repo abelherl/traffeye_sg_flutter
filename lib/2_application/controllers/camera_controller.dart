@@ -50,6 +50,10 @@ class CameraController extends GetxController with StateMixin {
   void updateSnapshots() async {
     _change(RxStatus.loading());
 
+    if (cameras.isNotEmpty) {
+      _lastUpdated.value = cameras.firstOrNull!.timestamp;
+    }
+
     final either = await Get.find<TrafficCameraUseCases>().getSnapshots();
 
     either.fold((left) => _onFailure(left), (right) {
