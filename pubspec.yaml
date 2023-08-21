@@ -13,6 +13,7 @@ dependencies:
   cached_network_image: ^3.2.3
   carousel_slider: ^4.2.1
   device_preview: ^1.1.0
+  dot_navigation_bar: ^1.0.2
   drag_and_drop_lists: ^0.3.3
   either_dart: ^1.0.0
   equatable: ^2.0.5

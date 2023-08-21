@@ -30,16 +30,18 @@ class DashboardPage extends StatelessWidget {
                   ),
                 ),
                 alignment: Alignment.centerLeft,
-                child: SafeArea(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.w),
-                    child: Hero(
-                      tag: 'logo',
-                      child: SvgPicture.asset(
-                        AssetsPathHelper.filledLogo,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(16.w).copyWith(top: 36.w),
+                      child: Hero(
+                        tag: 'logo',
+                        child: SvgPicture.asset(
+                          AssetsPathHelper.filledLogo,
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
               Padding(
@@ -50,7 +52,7 @@ class DashboardPage extends StatelessWidget {
                     const SavedCamerasSection(),
                     SizedBox(height: 24.w),
                     const FeaturesSection(),
-                    SizedBox(height: 24.w),
+                    SizedBox(height: 82.w),
                   ],
                 ),
               ),
