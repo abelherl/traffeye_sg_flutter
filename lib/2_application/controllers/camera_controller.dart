@@ -52,18 +52,21 @@ class CameraController extends GetxController with StateMixin {
 
     if (cameras.isNotEmpty) {
       _lastUpdated.value = cameras.firstOrNull!.timestamp;
+      lastUpdatedString.value = _getLastUpdated();
     }
 
     final either = await Get.find<TrafficCameraUseCases>().getSnapshots();
 
     either.fold((left) => _onFailure(left), (right) {
       _lastUpdated.value = DateTime.now();
+      lastUpdatedString.value = _getLastUpdated();
       cameras.value = right;
 
       final camerasSet = cameras.toSet();
       final savedCamerasSet = savedCameras.toSet();
 
       savedCameras.value = camerasSet.intersection(savedCamerasSet).toList();
+
       _change(RxStatus.success());
     });
   }
@@ -74,7 +77,7 @@ class CameraController extends GetxController with StateMixin {
   }
 
   String _getLastUpdated() {
-    if (savedCameras.isEmpty) return '';
+    if (savedCameras.isEmpty) return 'Unknown last updated';
 
     final formattedString = timeago.format(
       _lastUpdated.value,
