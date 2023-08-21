@@ -37,7 +37,7 @@ class BotNavPage extends StatelessWidget {
         splashColor: Colors.transparent,
         onTap: (_) => print('cok'),
         marginR: EdgeInsets.symmetric(vertical: 18.w, horizontal: 50.w),
-        paddingR: EdgeInsets.symmetric(vertical: 8.w, horizontal: 16.w),
+        paddingR: EdgeInsets.symmetric(vertical: 6.w, horizontal: 16.w),
         itemPadding: EdgeInsets.fromLTRB(16.w, 10.w, 16.w, 13.w),
         boxShadow: const [
           BoxShadow(

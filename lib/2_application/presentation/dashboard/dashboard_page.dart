@@ -52,7 +52,7 @@ class DashboardPage extends StatelessWidget {
                     const SavedCamerasSection(),
                     SizedBox(height: 24.w),
                     const FeaturesSection(),
-                    SizedBox(height: 82.w),
+                    SizedBox(height: 80.w),
                   ],
                 ),
               ),
