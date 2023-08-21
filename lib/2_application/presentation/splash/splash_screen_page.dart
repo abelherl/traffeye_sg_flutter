@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/dashboard_page.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/bot_nav/bot_nav_page.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
-    _goToHomePage(context);
+    _goToDashboardPage(context);
   }
 
   @override
@@ -79,13 +79,13 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     );
   }
 
-  void _goToHomePage(BuildContext context) {
+  void _goToDashboardPage(BuildContext context) {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
           context,
           PageRouteBuilder(
               transitionDuration: const Duration(seconds: 1),
-              pageBuilder: (_, __, ___) => const DashboardPage()));
+              pageBuilder: (_, __, ___) => const BotNavPage()));
     });
   }
 }

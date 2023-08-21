@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/location_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
@@ -10,6 +12,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class CameraController extends GetxController with StateMixin {
   final _lastUpdated = DateTime.now().obs;
+  final lastUpdatedString = 'Unknown last updated'.obs;
   final cameras = <TrafficCameraEntity>[].obs;
   final savedCameras = [
     TrafficCameraEntity(
@@ -32,19 +35,12 @@ class CameraController extends GetxController with StateMixin {
     ),
   ].obs;
 
-  String get lastUpdated {
-    if (savedCameras.isEmpty) return '';
-    return timeago.format(
-      _lastUpdated.value,
-      allowFromNow: true,
-    );
-  }
-
   @override
   void onInit() {
     super.onInit();
     _initTimeago();
     updateSnapshots();
+    _refreshLastUpdated();
   }
 
   void _initTimeago() {
@@ -56,7 +52,7 @@ class CameraController extends GetxController with StateMixin {
 
     final either = await Get.find<TrafficCameraUseCases>().getSnapshots();
 
-    either.fold((left) => onFailure(left), (right) {
+    either.fold((left) => _onFailure(left), (right) {
       _lastUpdated.value = DateTime.now();
       cameras.value = right;
 
@@ -68,9 +64,27 @@ class CameraController extends GetxController with StateMixin {
     });
   }
 
-  void onFailure(Failure failure) {
+  void _onFailure(Failure failure) {
     _change(RxStatus.error());
     AppSnackBar.showSnackBar(AppSnackBarData.fromFailure(failure));
+  }
+
+  String _getLastUpdated() {
+    if (savedCameras.isEmpty) return '';
+
+    final formattedString = timeago.format(
+      _lastUpdated.value,
+      allowFromNow: true,
+    );
+
+    lastUpdatedString.value = formattedString;
+
+    return formattedString;
+  }
+
+  void _refreshLastUpdated() {
+    Timer.periodic(const Duration(minutes: 1),
+        (Timer t) => lastUpdatedString.value = _getLastUpdated());
   }
 
   void _change(RxStatus status) => change(null, status: status);
