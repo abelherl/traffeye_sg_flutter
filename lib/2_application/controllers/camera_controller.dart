@@ -45,15 +45,15 @@ class CameraController extends GetxController with StateMixin {
 
   void _initTimeago() {
     timeago.setLocaleMessages('en', AppTimeagoMessages());
-  }
-
-  void updateSnapshots() async {
-    _change(RxStatus.loading());
 
     if (cameras.isNotEmpty) {
       _lastUpdated.value = cameras.firstOrNull!.timestamp;
       lastUpdatedString.value = _getLastUpdated();
     }
+  }
+
+  void updateSnapshots() async {
+    _change(RxStatus.loading());
 
     final either = await Get.find<TrafficCameraUseCases>().getSnapshots();
 
