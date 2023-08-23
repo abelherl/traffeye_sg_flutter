@@ -20,40 +20,37 @@ abstract class AppTheme {
   static const Color _lightNegativeColor = Color(0xFFCB4444);
 
   // * Text Style - Light
-  static final TextStyle _baseTextStyle = GoogleFonts.montserrat()
-      .copyWith(fontFamily: GoogleFonts.poppins().fontFamily);
-
-  static final TextStyle _lightDisplayText = _baseTextStyle.copyWith(
+  static final TextStyle _lightDisplayText = GoogleFonts.montserrat(
     color: _lightOnBackgroundColor,
     fontSize: 21.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static final TextStyle _lightTitleText = _baseTextStyle.copyWith(
+  static final TextStyle _lightTitleText = GoogleFonts.montserrat(
     color: _lightPrimaryColor,
     fontSize: 17.sp,
     fontWeight: FontWeight.w600,
     letterSpacing: 0,
   );
 
-  static final TextStyle _lightBodyText = _baseTextStyle.copyWith(
+  static final TextStyle _lightBodyText = GoogleFonts.montserrat(
     color: _lightOnBackgroundColor,
     fontWeight: FontWeight.w400,
     fontSize: 15.sp,
     letterSpacing: 0,
   );
 
-  static final TextStyle _lightCaptionText = _baseTextStyle.copyWith(
+  static final TextStyle _lightCaptionText = GoogleFonts.montserrat(
     color: _lightCaptionColor,
     fontWeight: FontWeight.w400,
     fontSize: 13.sp,
     letterSpacing: 0,
   );
 
-  static final TextStyle _lightLabelText = _baseTextStyle.copyWith(
-    color: _lightOnPrimaryColor,
-    fontWeight: FontWeight.w700,
+  static final TextStyle _lightLabelText = GoogleFonts.montserrat(
+    color: _lightPrimaryColor,
     fontSize: 13.sp,
+    fontWeight: FontWeight.w700,
     letterSpacing: 0,
   );
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:traffeye_sg_flutter/theme.dart';
+import 'package:get/get.dart';
 
 enum ThemedTextStyle {
   display,
@@ -14,6 +14,7 @@ class ThemedText extends StatelessWidget {
   final ThemedTextStyle? themedTextStyle;
   final Color? color;
   final TextStyle? textStyle;
+  final int? maxLines;
 
   const ThemedText(
     this.text, {
@@ -21,43 +22,44 @@ class ThemedText extends StatelessWidget {
     this.themedTextStyle,
     this.color,
     this.textStyle,
+    this.maxLines,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Theme(
-      data: AppTheme.lightTheme,
-      child: Builder(
-        builder: (newContext) {
-          final textTheme = Theme.of(newContext).textTheme;
-          TextStyle? textStyle;
+      data: Get.find<ThemeData>(),
+      child: Builder(builder: (newContext) {
+        final theme = Theme.of(newContext);
+        final textTheme = theme.textTheme;
+        TextStyle? textStyle;
 
-          if (themedTextStyle != null) {
-            switch (themedTextStyle!) {
-              case ThemedTextStyle.display:
-                textStyle = textTheme.displayLarge!;
-              case ThemedTextStyle.title:
-                textStyle = textTheme.titleLarge!;
-              case ThemedTextStyle.label:
-                textStyle = textTheme.labelLarge!;
-              case ThemedTextStyle.caption:
-                textStyle = textTheme.labelSmall!;
-              case ThemedTextStyle.body:
-                textStyle = textTheme.bodyLarge!;
-            }
-          } else {
-            textStyle = textStyle;
+        if (themedTextStyle != null) {
+          switch (themedTextStyle!) {
+            case ThemedTextStyle.display:
+              textStyle = textTheme.displayLarge!;
+            case ThemedTextStyle.title:
+              textStyle = textTheme.titleLarge!;
+            case ThemedTextStyle.label:
+              textStyle = textTheme.labelLarge!;
+            case ThemedTextStyle.caption:
+              textStyle = textTheme.labelSmall!;
+            case ThemedTextStyle.body:
+              textStyle = textTheme.bodyLarge!;
           }
+        } else {
+          textStyle = textStyle;
+        }
 
         return Text(
-            text,
-            style: textStyle?.copyWith(
-              color: color,
-            ),
-          );
-        }
-      ),
+          text,
+          style: textStyle?.copyWith(
+            color: color ?? theme.colorScheme.onBackground,
+          ),
+          maxLines: maxLines,
+          overflow: TextOverflow.fade,
+        );
+      }),
     );
   }
 }

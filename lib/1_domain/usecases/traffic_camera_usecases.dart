@@ -8,7 +8,21 @@ class TrafficCameraUseCases {
 
   TrafficCameraUseCases({required this.trafficCameraRepository});
 
-  Future<Either<Failure, List<TrafficCameraEntity>>> getSnapshots() {
-    return trafficCameraRepository.getSnapshotsFromRemote();
+  Future<Either<Failure, List<TrafficCameraEntity>>> getRemoteSnapshots() async {
+    return await trafficCameraRepository.getSnapshotsFromRemote();
+  }
+
+  Either<Failure, List<TrafficCameraEntity>> getLocalSnapshots() {
+    return trafficCameraRepository.getSnapshotsFromLocal();
+  }
+
+  Either<Failure, List<TrafficCameraEntity>> updateCamera(
+      TrafficCameraEntity camera) {
+    return trafficCameraRepository.updateCamera(camera);
+  }
+
+  Either<Failure, List<TrafficCameraEntity>> updateAllCameras(
+      List<TrafficCameraEntity> cameras) {
+    return trafficCameraRepository.updateAllCameras(cameras);
   }
 }

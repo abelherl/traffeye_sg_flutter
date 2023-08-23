@@ -18,7 +18,7 @@ class FeaturesCardBase extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.w),
+          borderRadius: BorderRadius.circular(16.r),
           image: DecorationImage(
             image: AssetImage(imagePath),
             fit: BoxFit.fill,

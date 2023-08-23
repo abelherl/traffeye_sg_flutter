@@ -12,11 +12,15 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
   TrafficCameraRepositoryImpl({required this.trafficCameraDatasource});
 
   @override
-  Future<Either<Failure, List<TrafficCameraEntity>>> getSnapshotsFromRemote() async {
+  Future<Either<Failure, List<TrafficCameraEntity>>>
+      getSnapshotsFromRemote() async {
     try {
-      List<TrafficCameraEntity> cameras = [];
+      List<TrafficCameraEntity> cameras =
+          trafficCameraDatasource.fetchSnapshotsFromLocal();
+
       final result = await trafficCameraDatasource.fetchSnapshotsFromRemote();
-      for (var camera in result) {
+
+      for (final camera in result) {
         final lat = camera.location.latitude;
         final long = camera.location.longitude;
         final placemarks = await placemarkFromCoordinates(lat, long);
@@ -27,13 +31,48 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
           longitude: long,
         );
 
-        cameras.add(TrafficCameraEntity.fromModel(
-            camera,
-            location: location));
+        cameras.add(camera.copyWithUpdated(location: location));
       }
       return Right(cameras);
     } catch (_) {
       return Left(ConnectionFailure());
+    }
+  }
+
+  @override
+  Either<Failure, List<TrafficCameraEntity>> getSnapshotsFromLocal() {
+    try {
+      final cameras = trafficCameraDatasource.fetchSnapshotsFromLocal();
+
+      return Right(cameras);
+    } catch (_) {
+      return Left(GeneralFailure());
+    }
+  }
+
+  @override
+  Either<Failure, List<TrafficCameraEntity>> updateCamera(
+      TrafficCameraEntity camera) {
+    try {
+      trafficCameraDatasource.update(camera);
+      final updatedCameras =
+          trafficCameraDatasource.fetchSnapshotsFromLocal().toList();
+      return Right(updatedCameras);
+    } catch (_) {
+      return Left(GeneralFailure());
+    }
+  }
+
+  @override
+  Either<Failure, List<TrafficCameraEntity>> updateAllCameras(
+      List<TrafficCameraEntity> cameras) {
+    try {
+      trafficCameraDatasource.updateAll(cameras);
+      final updatedCameras =
+          trafficCameraDatasource.fetchSnapshotsFromLocal().toList();
+      return Right(updatedCameras);
+    } catch (_) {
+      return Left(GeneralFailure());
     }
   }
 }

@@ -1,12 +1,18 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:traffeye_sg_flutter/0_datasource/exceptions/exceptions.dart';
 import 'package:traffeye_sg_flutter/0_datasource/models/traffic_camera_model.dart';
+import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/api_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/box_tags_helper.dart';
 
 abstract class TrafficCameraDatasource {
   Future<List<TrafficCameraModel>> fetchSnapshotsFromRemote();
+  List<TrafficCameraEntity> fetchSnapshotsFromLocal();
+  void update(TrafficCameraEntity camera);
+  void updateAll(List<TrafficCameraEntity> cameras);
 }
 
 class TrafficCameraDatasourceImpl extends GetConnect implements TrafficCameraDatasource {
@@ -27,6 +33,41 @@ class TrafficCameraDatasourceImpl extends GetConnect implements TrafficCameraDat
       }
 
       return cameras;
+    }
+  }
+
+  @override
+  List<TrafficCameraEntity> fetchSnapshotsFromLocal() {
+    final box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
+    final cameras = box.values.toList();
+    return cameras;
+  }
+
+  @override
+  void update(TrafficCameraEntity camera) {
+    try {
+      final box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
+      final index = box.values.toList()
+          .indexWhere((element) => element == camera);
+
+      box.putAt(index, camera);
+    } catch(_) {
+      throw CacheExceptions();
+    }
+  }
+
+  @override
+  void updateAll(List<TrafficCameraEntity> cameras) {
+    try {
+      final box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
+      for (final camera in cameras) {
+        final index = box.values.toList()
+            .indexWhere((element) => element == camera);
+
+        box.putAt(index, camera);
+      }
+    } catch(_) {
+      throw CacheExceptions();
     }
   }
 }

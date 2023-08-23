@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/0_datasource/datasources/traffic_camera_datasource.dart';
 import 'package:traffeye_sg_flutter/0_datasource/repositories/traffic_camera_repository_impl.dart';
@@ -5,6 +6,7 @@ import 'package:traffeye_sg_flutter/1_domain/repositories/traffic_camera_reposit
 import 'package:traffeye_sg_flutter/1_domain/usecases/traffic_camera_usecases.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/app_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
+import 'package:traffeye_sg_flutter/theme.dart';
 
 class AppInjections extends Bindings {
   @override
@@ -16,5 +18,6 @@ class AppInjections extends Bindings {
         trafficCameraRepository: Get.find<TrafficCameraRepository>()));
     Get.put<AppController>(AppController());
     Get.put<CameraController>(CameraController());
+    Get.put<ThemeData>(AppTheme.lightTheme);
   }
 }

@@ -1,10 +1,4 @@
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
-import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/bot_nav/widgets/app_bot_nav_bar.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/bot_nav/widgets/fade_indexed_stack.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/dashboard_page.dart';
