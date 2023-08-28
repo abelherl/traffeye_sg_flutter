@@ -20,6 +20,7 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
 
       final result = await trafficCameraDatasource.fetchSnapshotsFromRemote();
 
+      int i = 0;
       for (final camera in result) {
         final lat = camera.location.latitude;
         final long = camera.location.longitude;
@@ -31,7 +32,12 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
           longitude: long,
         );
 
-        cameras.add(camera.copyWithUpdated(location: location));
+        cameras.add(camera.copyWith(
+          isSaved: i < 4,
+          location: location,
+        ));
+
+        i++;
       }
       return Right(cameras);
     } catch (_) {

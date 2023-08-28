@@ -36,7 +36,7 @@ class TrafficCameraEntity extends HiveObject with EquatableMixin {
     );
   }
 
-  TrafficCameraEntity copyWithUpdated({String? customName, bool? isSaved, LocationEntity? location}) {
+  TrafficCameraEntity copyWith({String? customName, bool? isSaved, LocationEntity? location}) {
     return TrafficCameraEntity(
       cameraId: cameraId,
       timestamp: timestamp,

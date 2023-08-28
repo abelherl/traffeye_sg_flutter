@@ -25,4 +25,10 @@ class TrafficCameraUseCases {
       List<TrafficCameraEntity> cameras) {
     return trafficCameraRepository.updateAllCameras(cameras);
   }
+
+  Either<Failure, List<TrafficCameraEntity>> saveCameraToggle(
+      TrafficCameraEntity camera) {
+    camera.isSaved = !camera.isSaved;
+    return trafficCameraRepository.updateCamera(camera);
+  }
 }

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/app_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel_view.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/carousel_view.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class SavedCamerasSection extends StatelessWidget {

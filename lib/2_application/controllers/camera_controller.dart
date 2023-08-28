@@ -16,73 +16,70 @@ class CameraController extends GetxController with StateMixin {
   final _lastUpdated = DateTime.now().obs;
   final lastUpdatedString = 'Unknown last updated'.obs;
   final cameras = <TrafficCameraEntity>[].obs;
+  final savedCameras = <TrafficCameraEntity>[].obs;
   final trafficCameraUseCases = Get.find<TrafficCameraUseCases>();
-
-  List<TrafficCameraEntity> get savedCameras =>
-      cameras.where((camera) => camera.isSaved == true).toList();
+  final isHideRefreshButton = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     _initTimeago();
     _initBox();
-    updateSnapshots();
     _refreshLastUpdated();
   }
 
-  void _initTimeago() {
-    timeago.setLocaleMessages('en', AppTimeagoMessages());
-
-    if (cameras.isNotEmpty) {
-      _lastUpdated.value = cameras.firstOrNull!.timestamp;
-      lastUpdatedString.value = _getLastUpdated();
-    }
-  }
-
-  void updateSnapshots() async {
+  void updateSnapshots({bool isHideRefreshButton = true}) async {
     _change(RxStatus.loading());
 
     final either = await trafficCameraUseCases.getRemoteSnapshots();
 
-    either.fold((left) => _onFailure(left), (right) {
-      _lastUpdated.value = DateTime.now();
-      lastUpdatedString.value = _getLastUpdated();
-      cameras.value = right;
+    either.fold((left) {
+      _getLocalCameras();
+      _onFailure(left);
+    }, (right) {
+      trafficCameraUseCases.updateAllCameras(right);
+      _updateAllCamerasValue(right);
+      _updateLastUpdated(dateTime: DateTime.now());
+
+      if (isHideRefreshButton) _hideRefreshButton();
 
       _change(RxStatus.success());
     });
   }
 
-  void saveCameraToggle({required TrafficCameraEntity camera}) {
+  void saveCameraToggle({required TrafficCameraEntity camera, required Function() callback}) {
     final index = cameras.indexWhere((element) => element == camera);
     if (index != -1) {
-      cameras[index].isSaved = !cameras[index].isSaved;
-      trafficCameraUseCases.updateCamera(camera);
+      // trafficCameraUseCases.saveCameraToggle(camera);
+      // _updateAllCamerasValue(cameras);
+      callback();
     }
   }
 
-  void _onFailure(Failure failure) {
-    _change(RxStatus.error());
-    AppSnackBar.showSnackBar(AppSnackBarData.fromFailure(failure));
+  // * PRIVATE METHODS
+
+  void _initTimeago() {
+    timeago.setLocaleMessages('en', AppTimeagoMessages());
   }
 
   void _initBox() async {
     Hive.init((await getApplicationDocumentsDirectory()).path);
     await Hive.openBox<TrafficCameraEntity>(BoxTagsHelper.cameras);
-    _getLocalCameras();
+    updateSnapshots(isHideRefreshButton: false);
   }
 
-  void _getLocalCameras() async {
+  void _getLocalCameras() {
     final either = trafficCameraUseCases.getLocalSnapshots();
 
     either.fold(
-        (left) => _onFailure(left),
-        (right) => cameras.value = right);
+        (left) => _onFailure(left), (right) => _updateAllCamerasValue(right));
+
+    if (cameras.isNotEmpty) {
+      _updateLastUpdated(dateTime: cameras.first.timestamp);
+    }
   }
 
   String _getLastUpdated() {
-    if (savedCameras.isEmpty) return 'Unknown last updated';
-
     final formattedString = timeago.format(
       _lastUpdated.value,
       allowFromNow: true,
@@ -93,9 +90,34 @@ class CameraController extends GetxController with StateMixin {
     return formattedString;
   }
 
+  void _hideRefreshButton() {
+    isHideRefreshButton.value = true;
+    Future.delayed(const Duration(minutes: 1), () {
+      isHideRefreshButton.value = false;
+    });
+  }
+
+  void _onFailure(Failure failure) {
+    _change(RxStatus.error());
+    AppSnackBar.showSnackBar(AppSnackBarData.fromFailure(failure));
+  }
+
   void _refreshLastUpdated() {
-    Timer.periodic(const Duration(minutes: 1),
-        (Timer t) => lastUpdatedString.value = _getLastUpdated());
+    Timer.periodic(
+        const Duration(minutes: 1), (Timer t) => _updateLastUpdated());
+  }
+
+  void _updateAllCamerasValue(List<TrafficCameraEntity> cameras) {
+    this.cameras.value = cameras;
+    savedCameras.value =
+        this.cameras.where((element) => element.isSaved == true).toList();
+
+    isHideRefreshButton.value = !isHideRefreshButton.value;
+  }
+
+  void _updateLastUpdated({DateTime? dateTime}) {
+    _lastUpdated.value = dateTime ?? _lastUpdated.value;
+    lastUpdatedString.value = _getLastUpdated();
   }
 
   void _change(RxStatus status) => change(null, status: status);

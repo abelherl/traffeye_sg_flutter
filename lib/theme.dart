@@ -14,10 +14,15 @@ abstract class AppTheme {
   static const Color _lightAccentVariantColor = Color(0xFFFF9840);
   static const Color _lightBackgroundColor = Color(0xFFF8F8F8);
   static const Color _lightCaptionColor = Color(0xFF7D7D7D);
-  static const Color _lightDisableColor = Color(0xFFB6B6B6);
-  static const Color _lightHintColor = Color(0xFF9E9E9E);
-  static const Color _lightPositiveColor = Color(0xFF6DBB61);
-  static const Color _lightNegativeColor = Color(0xFFCB4444);
+
+  // * Public Colors
+  static const Color positiveColor = Color(0xFF6DBB61);
+  static const Color negativeColor = Color(0xFFCB4444);
+  static const Color lightDisableColor = Color(0xFFB6B6B6);
+  static const Color lightHintColor = Color(0xFF9E9E9E);
+  static final Color negativeSplashColor = negativeColor.withOpacity(0.1);
+  static final Color positiveSplashColor = positiveColor.withOpacity(0.1);
+  static final Color imagesSplashColor = _lightAccentVariantColor.withOpacity(0.4);
 
   // * Text Style - Light
   static final TextStyle _lightDisplayText = GoogleFonts.montserrat(
@@ -82,20 +87,4 @@ abstract class AppTheme {
     textTheme: _lightTextTheme,
     bottomAppBarTheme: const BottomAppBarTheme(color: _lightAppBarColor),
   );
-
-  static Color getPositiveColor({required bool isDarkTheme}) {
-    return isDarkTheme ? _lightPositiveColor : _lightPositiveColor;
-  }
-
-  static Color getNegativeColor({required bool isDarkTheme}) {
-    return isDarkTheme ? _lightNegativeColor : _lightNegativeColor;
-  }
-
-  static Color getDisableColor({required bool isDarkTheme}) {
-    return isDarkTheme ? _lightDisableColor : _lightDisableColor;
-  }
-
-  static Color getHintColor({required bool isDarkTheme}) {
-    return isDarkTheme ? _lightHintColor : _lightHintColor;
-  }
 }
