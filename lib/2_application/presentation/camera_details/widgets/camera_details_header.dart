@@ -17,8 +17,7 @@ class CameraDetailsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(
-        CameraDetailsController(camera: camera.copyWith().obs));
+    final controller = Get.find<CameraDetailsController>();
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 

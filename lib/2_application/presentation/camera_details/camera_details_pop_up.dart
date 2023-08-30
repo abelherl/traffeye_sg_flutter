@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
+import 'package:traffeye_sg_flutter/2_application/controllers/camera_details_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/negative_button.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/save_button.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/widgets/camera_details_header.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
-
 
 class CameraDetailsPopUp extends StatelessWidget {
   final TrafficCameraEntity camera;
@@ -22,6 +22,8 @@ class CameraDetailsPopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(
+        CameraDetailsController(camera: camera.copyWith().obs));
     final colorScheme = Theme.of(context).colorScheme;
     final borderRadius = BorderRadius.circular(16.r);
 
@@ -41,7 +43,6 @@ class CameraDetailsPopUp extends StatelessWidget {
                 aspectRatio: 328 / 190,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.red,
                     image: DecorationImage(
                       image: CachedNetworkImageProvider(camera.imageUrl),
                       fit: BoxFit.fill,
@@ -76,10 +77,19 @@ class CameraDetailsPopUp extends StatelessWidget {
                         ),
                         SizedBox(width: 16.w),
                         Expanded(
-                          child: SaveButton(
-                            onPressed: () => Get.back(),
+                          child: Obx(
+                            () {
+                              return SaveButton(
+                                isEnabled: controller.isChanged.value,
+                                onPressed: () {
+                                  print("fad");
+                                  controller.updateCamera(
+                                      callback: () => Get.back());
+                                },
+                              );
+                            }
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

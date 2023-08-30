@@ -50,3 +50,18 @@ class TrafficCameraEntity extends HiveObject with EquatableMixin {
   @override
   List<Object?> get props => [cameraId];
 }
+
+class TrafficCameraAdapter extends TypeAdapter<TrafficCameraEntity> {
+  @override
+  final typeId = 0;
+
+  @override
+  TrafficCameraEntity read(BinaryReader reader) {
+    return reader.read();
+  }
+
+  @override
+  void write(BinaryWriter writer, TrafficCameraEntity obj) {
+    writer.write(obj);
+  }
+}

@@ -15,8 +15,8 @@ abstract class TrafficCameraDatasource {
   void updateAll(List<TrafficCameraEntity> cameras);
 }
 
-class TrafficCameraDatasourceImpl extends GetConnect implements TrafficCameraDatasource {
-
+class TrafficCameraDatasourceImpl extends GetConnect
+    implements TrafficCameraDatasource {
   @override
   Future<List<TrafficCameraModel>> fetchSnapshotsFromRemote() async {
     final response = await get(ApiHelper.trafficImagesUrl);
@@ -24,7 +24,8 @@ class TrafficCameraDatasourceImpl extends GetConnect implements TrafficCameraDat
     if (response.statusCode != 200) {
       throw ServerException();
     } else {
-      final Map<String, dynamic> responseBody = json.decode(response.bodyString!);
+      final Map<String, dynamic> responseBody =
+          json.decode(response.bodyString!);
       final List<dynamic> body = responseBody['items'][0]['cameras'];
       List<TrafficCameraModel> cameras = [];
 
@@ -46,12 +47,8 @@ class TrafficCameraDatasourceImpl extends GetConnect implements TrafficCameraDat
   @override
   void update(TrafficCameraEntity camera) {
     try {
-      final box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
-      final index = box.values.toList()
-          .indexWhere((element) => element == camera);
-
-      box.putAt(index, camera);
-    } catch(_) {
+      camera.save();
+    } catch (_) {
       throw CacheExceptions();
     }
   }
@@ -60,13 +57,21 @@ class TrafficCameraDatasourceImpl extends GetConnect implements TrafficCameraDat
   void updateAll(List<TrafficCameraEntity> cameras) {
     try {
       final box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
+      final list = box.values.toList();
       for (final camera in cameras) {
-        final index = box.values.toList()
-            .indexWhere((element) => element == camera);
+        var cameraFromBox =
+            list.firstWhereOrNull((element) => element == camera);
 
-        box.putAt(index, camera);
+        if (cameraFromBox != null) {
+          cameraFromBox = camera;
+          cameraFromBox.save();
+        } else {
+          box.put(camera.cameraId, camera);
+        }
       }
-    } catch(_) {
+
+      box.values.toList();
+    } catch (_) {
       throw CacheExceptions();
     }
   }

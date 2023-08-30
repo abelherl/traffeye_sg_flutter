@@ -34,11 +34,11 @@ class CameraController extends GetxController with StateMixin {
     final either = await trafficCameraUseCases.getRemoteSnapshots();
 
     either.fold((left) {
-      _getLocalCameras();
+      _updateAllCamerasValue();
       _onFailure(left);
     }, (right) {
       trafficCameraUseCases.updateAllCameras(right);
-      _updateAllCamerasValue(right);
+      _updateAllCamerasValue();
       _updateLastUpdated(dateTime: DateTime.now());
 
       if (isHideRefreshButton) _hideRefreshButton();
@@ -47,11 +47,12 @@ class CameraController extends GetxController with StateMixin {
     });
   }
 
-  void saveCameraToggle({required TrafficCameraEntity camera, required Function() callback}) {
+  void saveCameraToggle(
+      {required TrafficCameraEntity camera, required Function() callback}) {
     final index = cameras.indexWhere((element) => element == camera);
     if (index != -1) {
-      // trafficCameraUseCases.saveCameraToggle(camera);
-      // _updateAllCamerasValue(cameras);
+      trafficCameraUseCases.saveCameraToggle(camera);
+      _updateAllCamerasValue();
       callback();
     }
   }
@@ -66,17 +67,6 @@ class CameraController extends GetxController with StateMixin {
     Hive.init((await getApplicationDocumentsDirectory()).path);
     await Hive.openBox<TrafficCameraEntity>(BoxTagsHelper.cameras);
     updateSnapshots(isHideRefreshButton: false);
-  }
-
-  void _getLocalCameras() {
-    final either = trafficCameraUseCases.getLocalSnapshots();
-
-    either.fold(
-        (left) => _onFailure(left), (right) => _updateAllCamerasValue(right));
-
-    if (cameras.isNotEmpty) {
-      _updateLastUpdated(dateTime: cameras.first.timestamp);
-    }
   }
 
   String _getLastUpdated() {
@@ -107,12 +97,19 @@ class CameraController extends GetxController with StateMixin {
         const Duration(minutes: 1), (Timer t) => _updateLastUpdated());
   }
 
-  void _updateAllCamerasValue(List<TrafficCameraEntity> cameras) {
-    this.cameras.value = cameras;
-    savedCameras.value =
-        this.cameras.where((element) => element.isSaved == true).toList();
+  void _updateAllCamerasValue() {
+    final either = trafficCameraUseCases.getLocalSnapshots();
 
-    isHideRefreshButton.value = !isHideRefreshButton.value;
+    either.fold((left) => _onFailure(left), (right) {
+      cameras.value = right;
+      if (cameras.isNotEmpty) {
+        _updateLastUpdated(dateTime: cameras.first.timestamp);
+      }
+      savedCameras.value =
+          cameras.where((element) => element.isSaved == true).toList();
+
+      isHideRefreshButton.value = !isHideRefreshButton.value;
+    });
   }
 
   void _updateLastUpdated({DateTime? dateTime}) {
