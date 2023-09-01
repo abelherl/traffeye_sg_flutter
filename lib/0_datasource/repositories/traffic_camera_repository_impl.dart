@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:either_dart/either.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:traffeye_sg_flutter/0_datasource/datasources/traffic_camera_datasource.dart';
@@ -15,29 +16,31 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
   Future<Either<Failure, List<TrafficCameraEntity>>>
       getSnapshotsFromRemote() async {
     try {
-      List<TrafficCameraEntity> cameras =
+      List<TrafficCameraEntity> cameras = [];
+      List<TrafficCameraEntity> camerasBoxList =
           trafficCameraDatasource.fetchSnapshotsFromLocal();
 
       final result = await trafficCameraDatasource.fetchSnapshotsFromRemote();
 
-      int i = 0;
       for (final camera in result) {
+        final camerasBox = camerasBoxList.firstWhereOrNull((element) => element.cameraId == camera.cameraId);
         final lat = camera.location.latitude;
         final long = camera.location.longitude;
         final placemarks = await placemarkFromCoordinates(lat, long);
 
         final location = LocationEntity(
+          id: camera.cameraId,
           name: placemarks.firstOrNull?.street ?? '',
           latitude: lat,
           longitude: long,
         );
 
-        cameras.add(camera.copyWith(
-          isSaved: i < 4,
+        final updatedCamera = (camerasBox ?? camera).copyWith(
           location: location,
-        ));
+        );
 
-        i++;
+        cameras.add(updatedCamera);
+        trafficCameraDatasource.update(updatedCamera);
       }
       return Right(cameras);
     } catch (_) {
@@ -51,6 +54,19 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
       final cameras = trafficCameraDatasource.fetchSnapshotsFromLocal();
 
       return Right(cameras);
+    } catch (_) {
+      return Left(GeneralFailure());
+    }
+  }
+
+  @override
+  Either<Failure, List<TrafficCameraEntity>> getLocalSavedCameras() {
+    try {
+      final cameras = trafficCameraDatasource.fetchSnapshotsFromLocal();
+      final savedCameras =
+          cameras.where((element) => element.isSaved == true).toList();
+
+      return Right(savedCameras);
     } catch (_) {
       return Left(GeneralFailure());
     }

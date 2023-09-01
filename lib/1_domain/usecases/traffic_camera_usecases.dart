@@ -16,6 +16,10 @@ class TrafficCameraUseCases {
     return trafficCameraRepository.getSnapshotsFromLocal();
   }
 
+  Either<Failure, List<TrafficCameraEntity>> getLocalSavedCameras() {
+    return trafficCameraRepository.getLocalSavedCameras();
+  }
+
   Either<Failure, List<TrafficCameraEntity>> updateCamera(
       TrafficCameraEntity camera) {
     return trafficCameraRepository.updateCamera(camera);

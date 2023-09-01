@@ -82,7 +82,6 @@ class CameraDetailsPopUp extends StatelessWidget {
                               return SaveButton(
                                 isEnabled: controller.isChanged.value,
                                 onPressed: () {
-                                  print("fad");
                                   controller.updateCamera(
                                       callback: () => Get.back());
                                 },

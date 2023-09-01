@@ -1,12 +1,9 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/failures/failures.dart';
 import 'package:traffeye_sg_flutter/1_domain/usecases/traffic_camera_usecases.dart';
-import 'package:traffeye_sg_flutter/2_application/core/helpers/box_tags_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/intl/app_timeago_messages.dart';
 import 'package:traffeye_sg_flutter/2_application/core/snack_bar/app_snack_bar.dart';
 import 'package:traffeye_sg_flutter/2_application/core/snack_bar/app_snack_bar_data.dart';
@@ -37,7 +34,6 @@ class CameraController extends GetxController with StateMixin {
       _updateAllCamerasValue();
       _onFailure(left);
     }, (right) {
-      trafficCameraUseCases.updateAllCameras(right);
       _updateAllCamerasValue();
       _updateLastUpdated(dateTime: DateTime.now());
 
@@ -64,8 +60,6 @@ class CameraController extends GetxController with StateMixin {
   }
 
   void _initBox() async {
-    Hive.init((await getApplicationDocumentsDirectory()).path);
-    await Hive.openBox<TrafficCameraEntity>(BoxTagsHelper.cameras);
     updateSnapshots(isHideRefreshButton: false);
   }
 
@@ -98,17 +92,16 @@ class CameraController extends GetxController with StateMixin {
   }
 
   void _updateAllCamerasValue() {
-    final either = trafficCameraUseCases.getLocalSnapshots();
+    final either1 = trafficCameraUseCases.getLocalSnapshots();
 
-    either.fold((left) => _onFailure(left), (right) {
+    either1.fold((left) => _onFailure(left), (right) {
       cameras.value = right;
-      if (cameras.isNotEmpty) {
-        _updateLastUpdated(dateTime: cameras.first.timestamp);
-      }
-      savedCameras.value =
-          cameras.where((element) => element.isSaved == true).toList();
+    });
 
-      isHideRefreshButton.value = !isHideRefreshButton.value;
+    final either2 = trafficCameraUseCases.getLocalSavedCameras();
+
+    either2.fold((left) => _onFailure(left), (right) {
+      savedCameras.value = right;
     });
   }
 

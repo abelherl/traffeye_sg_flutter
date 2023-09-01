@@ -17,6 +17,8 @@ abstract class TrafficCameraDatasource {
 
 class TrafficCameraDatasourceImpl extends GetConnect
     implements TrafficCameraDatasource {
+  final _box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
+
   @override
   Future<List<TrafficCameraModel>> fetchSnapshotsFromRemote() async {
     final response = await get(ApiHelper.trafficImagesUrl);
@@ -39,15 +41,14 @@ class TrafficCameraDatasourceImpl extends GetConnect
 
   @override
   List<TrafficCameraEntity> fetchSnapshotsFromLocal() {
-    final box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
-    final cameras = box.values.toList();
+    final cameras = _box.values.toList();
     return cameras;
   }
 
   @override
-  void update(TrafficCameraEntity camera) {
+  void update(TrafficCameraEntity camera) async {
     try {
-      camera.save();
+      _box.put(camera.cameraId, camera);
     } catch (_) {
       throw CacheExceptions();
     }
@@ -56,21 +57,9 @@ class TrafficCameraDatasourceImpl extends GetConnect
   @override
   void updateAll(List<TrafficCameraEntity> cameras) {
     try {
-      final box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
-      final list = box.values.toList();
       for (final camera in cameras) {
-        var cameraFromBox =
-            list.firstWhereOrNull((element) => element == camera);
-
-        if (cameraFromBox != null) {
-          cameraFromBox = camera;
-          cameraFromBox.save();
-        } else {
-          box.put(camera.cameraId, camera);
-        }
+        update(camera);
       }
-
-      box.values.toList();
     } catch (_) {
       throw CacheExceptions();
     }

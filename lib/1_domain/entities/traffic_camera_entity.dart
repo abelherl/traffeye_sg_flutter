@@ -4,7 +4,7 @@ import 'package:traffeye_sg_flutter/0_datasource/models/traffic_camera_model.dar
 import 'package:traffeye_sg_flutter/1_domain/entities/location_entity.dart';
 
 @HiveType(typeId: 0)
-class TrafficCameraEntity extends HiveObject with EquatableMixin {
+class TrafficCameraEntity with EquatableMixin {
   @HiveField(0)
   String cameraId;
   @HiveField(1)
@@ -36,11 +36,11 @@ class TrafficCameraEntity extends HiveObject with EquatableMixin {
     );
   }
 
-  TrafficCameraEntity copyWith({String? customName, bool? isSaved, LocationEntity? location}) {
+  TrafficCameraEntity copyWith({String? customName, bool? isSaved, LocationEntity? location, String? imageUrl}) {
     return TrafficCameraEntity(
       cameraId: cameraId,
       timestamp: timestamp,
-      imageUrl: imageUrl,
+      imageUrl: imageUrl ?? this.imageUrl,
       location: location ?? this.location,
       customName: customName,
       isSaved: isSaved ?? this.isSaved,
@@ -57,11 +57,24 @@ class TrafficCameraAdapter extends TypeAdapter<TrafficCameraEntity> {
 
   @override
   TrafficCameraEntity read(BinaryReader reader) {
-    return reader.read();
+    return TrafficCameraEntity(
+      cameraId: reader.read(),
+      timestamp: reader.read(),
+      imageUrl: reader.read(),
+      location: reader.read(),
+      customName: reader.read(),
+      isSaved: reader.read(),
+    );
   }
 
   @override
   void write(BinaryWriter writer, TrafficCameraEntity obj) {
-    writer.write(obj);
+    writer
+      ..write(obj.cameraId)
+      ..write(obj.timestamp)
+      ..write(obj.imageUrl)
+      ..write(obj.location)
+      ..write(obj.customName)
+      ..write(obj.isSaved);
   }
 }
