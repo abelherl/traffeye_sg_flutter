@@ -36,6 +36,7 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
         );
 
         final updatedCamera = (camerasBox ?? camera).copyWith(
+          timestamp: camera.timestamp,
           location: location,
         );
 

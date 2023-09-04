@@ -78,15 +78,12 @@ class CameraDetailsPopUp extends StatelessWidget {
                         SizedBox(width: 16.w),
                         Expanded(
                           child: Obx(
-                            () {
-                              return SaveButton(
-                                isEnabled: controller.isChanged.value,
-                                onPressed: () {
-                                  controller.updateCamera(
-                                      callback: () => Get.back());
-                                },
-                              );
-                            }
+                            () => SaveButton(
+                              isEnabled: controller.isChanged.value,
+                              onPressed: () => controller.updateCamera(
+                                callback: () => Get.back(),
+                              ),
+                            ),
                           ),
                         ),
                       ],

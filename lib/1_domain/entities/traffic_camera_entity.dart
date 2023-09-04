@@ -36,10 +36,10 @@ class TrafficCameraEntity with EquatableMixin {
     );
   }
 
-  TrafficCameraEntity copyWith({String? customName, bool? isSaved, LocationEntity? location, String? imageUrl}) {
+  TrafficCameraEntity copyWith({String? customName, bool? isSaved, LocationEntity? location, String? imageUrl, DateTime? timestamp}) {
     return TrafficCameraEntity(
       cameraId: cameraId,
-      timestamp: timestamp,
+      timestamp: timestamp ?? this.timestamp,
       imageUrl: imageUrl ?? this.imageUrl,
       location: location ?? this.location,
       customName: customName,

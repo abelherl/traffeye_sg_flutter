@@ -11,7 +11,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class CameraController extends GetxController with StateMixin {
   final _lastUpdated = DateTime.now().obs;
-  final lastUpdatedString = 'Unknown last updated'.obs;
+  final lastUpdatedString = ''.obs;
   final cameras = <TrafficCameraEntity>[].obs;
   final savedCameras = <TrafficCameraEntity>[].obs;
   final trafficCameraUseCases = Get.find<TrafficCameraUseCases>();
@@ -35,7 +35,6 @@ class CameraController extends GetxController with StateMixin {
       _onFailure(left);
     }, (right) {
       _updateAllCamerasValue();
-      _updateLastUpdated(dateTime: DateTime.now());
 
       if (isHideRefreshButton) _hideRefreshButton();
 
@@ -57,6 +56,8 @@ class CameraController extends GetxController with StateMixin {
 
   void _initTimeago() {
     timeago.setLocaleMessages('en', AppTimeagoMessages());
+
+    trafficCameraUseCases.getLocalSnapshots();
   }
 
   void _initBox() async {
@@ -103,6 +104,8 @@ class CameraController extends GetxController with StateMixin {
     either2.fold((left) => _onFailure(left), (right) {
       savedCameras.value = right;
     });
+
+    _updateLastUpdated(dateTime: cameras.firstOrNull?.timestamp);
   }
 
   void _updateLastUpdated({DateTime? dateTime}) {
