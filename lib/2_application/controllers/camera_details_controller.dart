@@ -4,7 +4,7 @@ import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.
 
 class CameraDetailsController extends GetxController with StateMixin {
   final Rx<TrafficCameraEntity> camera;
-  final Rx<String?> customName = null.obs;
+  final Rx<String> customName = ''.obs;
   final isSaved = false.obs;
   final isChanged = false.obs;
   late final TrafficCameraEntity _initialCamera;
@@ -14,12 +14,16 @@ class CameraDetailsController extends GetxController with StateMixin {
   @override
   void onInit() {
     super.onInit();
-    customName.value = camera.value.customName;
+    customName.value = camera.value.customName ?? '';
     isSaved.value = camera.value.isSaved;
-    _initialCamera = camera.value.copyWith();
+
+    camera.value.customName = customName.value;
+    _initialCamera = camera.value.copyWith(
+        customName: customName.value);
   }
 
   void updateCustomName(String customName) {
+    camera.value.customName = customName;
     this.customName.value = customName;
     _updateIsChanged();
   }

@@ -7,10 +7,11 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_details_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/app_text_field.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/negative_button.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/save_button.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/widgets/camera_details_container.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/widgets/camera_details_header.dart';
-import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class CameraDetailsPopUp extends StatelessWidget {
   final TrafficCameraEntity camera;
@@ -22,78 +23,66 @@ class CameraDetailsPopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(
-        CameraDetailsController(camera: camera.copyWith().obs));
-    final colorScheme = Theme.of(context).colorScheme;
-    final borderRadius = BorderRadius.circular(16.r);
+    final controller =
+        Get.put(CameraDetailsController(camera: camera.copyWith().obs));
 
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-      child: Dialog(
-        backgroundColor: Colors.transparent,
-        child: Container(
-          decoration: BoxDecoration(
-            color: colorScheme.background,
-            borderRadius: borderRadius,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AspectRatio(
-                aspectRatio: 328 / 190,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: CachedNetworkImageProvider(camera.imageUrl),
-                      fit: BoxFit.fill,
-                    ),
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(16.r),
-                    ),
-                  ),
+      child: CameraDetailsContainer(
+        children: [
+          AspectRatio(
+            aspectRatio: 328 / 190,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(camera.imageUrl),
+                  fit: BoxFit.fill,
+                ),
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(16.r),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(16.w),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.w),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                CameraDetailsHeader(camera: camera),
+                SizedBox(height: 16.w),
+                AppTextField(
+                  title: IntlHelper.customName.tr,
+                  hint: IntlHelper.customNameHint.tr,
+                  onChanged: (text) => controller.updateCustomName(text),
+                ),
+                SizedBox(height: 32.w),
+                Row(
                   children: [
-                    CameraDetailsHeader(camera: camera),
-                    SizedBox(height: 16.w),
-                    ThemedText(
-                      IntlHelper.customName.tr,
-                      themedTextStyle: ThemedTextStyle.label,
+                    Expanded(
+                      child: NegativeButton(
+                        label: IntlHelper.close.tr,
+                        onPressed: () => Get.back(),
+                      ),
                     ),
-                    const TextField(),
-                    SizedBox(height: 32.w),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: NegativeButton(
-                            label: IntlHelper.close.tr,
-                            onPressed: () => Get.back(),
+                    SizedBox(width: 16.w),
+                    Expanded(
+                      child: Obx(
+                        () => SaveButton(
+                          isEnabled: controller.isChanged.value,
+                          onPressed: () => controller.updateCamera(
+                            callback: () => Get.back(),
                           ),
                         ),
-                        SizedBox(width: 16.w),
-                        Expanded(
-                          child: Obx(
-                            () => SaveButton(
-                              isEnabled: controller.isChanged.value,
-                              onPressed: () => controller.updateCamera(
-                                callback: () => Get.back(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
