@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/camera_details_pop_up.dart';
-import 'package:traffeye_sg_flutter/theme.dart';
 
 class CarouselCard extends StatelessWidget {
   final TrafficCameraEntity camera;
@@ -41,34 +41,21 @@ class CarouselCard extends StatelessWidget {
                 stops: [0.5, 1],
               ),
             ),
-            child: Material(
+            child: AppInkWell(
               borderRadius: borderRadius,
-              color: Colors.transparent,
-              child: Ink(
-                child: InkWell(
-                  borderRadius: borderRadius,
-                  splashColor: AppTheme.imagesSplashColor,
-                  highlightColor: AppTheme.imagesSplashColor,
-                  onTap: () {
-                    Get.dialog(
-                      CameraDetailsPopUp(camera: camera),
-                      barrierColor: colorScheme.primary.withOpacity(0.5),
-                    );
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.all(16.w),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        camera.customName ?? camera.location.name,
-                        style: theme.textTheme.displayLarge?.copyWith(
-                          color: colorScheme.onPrimary,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.fade,
-                      ),
-                    ),
+              onPressed: () => Get.dialog(
+                CameraDetailsPopUp(camera: camera),
+                barrierColor: colorScheme.primary.withOpacity(0.5),
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  camera.customName ?? camera.location.name,
+                  style: theme.textTheme.displayLarge?.copyWith(
+                    color: colorScheme.onPrimary,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.fade,
                 ),
               ),
             ),
