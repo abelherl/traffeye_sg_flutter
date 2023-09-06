@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/features_card_base.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/explore_cameras/explore_cameras_page.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class FeaturesSection extends StatelessWidget {
@@ -25,12 +26,14 @@ class FeaturesSection extends StatelessWidget {
             imagePath: AssetsPathHelper.imagesExplore,
             title: IntlHelper.cardCamerasTitle.tr,
             subtitle: IntlHelper.cardCamerasSubtitle.tr,
+            onPressed: () => Get.to(() => const ExploreCamerasPage()),
           ),
           SizedBox(height: 16.w),
           FeaturesCardBase(
             imagePath: AssetsPathHelper.imagesWidget,
             title: IntlHelper.cardWidgetsTitle.tr,
             subtitle: IntlHelper.cardWidgetsSubtitle.tr,
+            onPressed: () => Get.to(() => const ExploreCamerasPage()),
           ),
         ],
       ),

@@ -24,6 +24,7 @@ dependencies:
   geocoding: ^2.1.0
   get: ^4.6.5
   google_fonts: ^5.1.0
+  google_maps_flutter: ^2.5.0
   hive: ^2.2.3
   path_provider: ^2.1.0
   shimmer: ^3.0.0
@@ -45,3 +46,4 @@ flutter:
     - assets/vectors/filled/
     - assets/vectors/images/
     - assets/vectors/outlined/
+    - assets/style/

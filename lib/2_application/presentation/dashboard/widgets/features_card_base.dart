@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
 
 class FeaturesCardBase extends StatelessWidget {
   final String imagePath;
   final String title;
   final String subtitle;
+  final Function() onPressed;
 
   const FeaturesCardBase({
-    Key? key, required this.imagePath, required this.title, required this.subtitle}) : super(key: key);
+    super.key,
+    required this.imagePath,
+    required this.title,
+    required this.subtitle,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +23,6 @@ class FeaturesCardBase extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 328 / 180,
       child: Container(
-        padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
           image: DecorationImage(
@@ -24,8 +30,8 @@ class FeaturesCardBase extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        child: Align(
-          alignment: Alignment.bottomLeft,
+        child: AppInkWell(
+          onPressed: () => onPressed(),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,

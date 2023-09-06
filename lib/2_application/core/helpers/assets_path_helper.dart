@@ -3,6 +3,7 @@ abstract class AssetsPathHelper {
   static const assets = 'assets/';
   static const imagesPng = '${assets}images/';
   static const vectors = '${assets}vectors/';
+  static const style = '${assets}style/';
 
   // * Images PNG
   static const imagesPngAbelHerl = '${imagesPng}img_abelherl.png';
@@ -36,4 +37,7 @@ abstract class AssetsPathHelper {
 
   // * Vectors - Outlined
   static const outlinedBookmark = '${vectorsOutlined}ic_bookmark.svg';
+
+  // * Style
+  static const styleMap = '${style}map_style.txt';
 }
