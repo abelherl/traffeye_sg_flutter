@@ -23,6 +23,7 @@ abstract class AppTheme {
   static final Color negativeSplashColor = negativeColor.withOpacity(0.1);
   static final Color positiveSplashColor = positiveColor.withOpacity(0.1);
   static final Color imagesSplashColor = _lightAccentVariantColor.withOpacity(0.4);
+  static final Color barrierColor = _lightPrimaryColor.withOpacity(0.5);
 
   // * Text Style - Light
   static final TextStyle _lightDisplayText = GoogleFonts.montserrat(

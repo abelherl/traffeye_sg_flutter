@@ -52,7 +52,7 @@ class CameraController extends GetxController with StateMixin {
     }
   }
 
-  // * PRIVATE METHODS
+  // * Private Methods
 
   void _initTimeago() {
     timeago.setLocaleMessages('en', AppTimeagoMessages());
