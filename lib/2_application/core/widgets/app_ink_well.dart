@@ -22,7 +22,7 @@ class AppInkWell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = this.borderRadius ?? BorderRadius.circular(8.r);
+    final borderRadius = this.borderRadius ?? BorderRadius.circular(16.r);
     final inkColor = this.inkColor ?? AppTheme.imagesSplashColor;
     final padding = this.padding ?? EdgeInsets.all(16.w);
     final alignment = this.alignment ?? Alignment.bottomLeft;
