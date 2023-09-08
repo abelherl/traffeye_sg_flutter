@@ -14,7 +14,7 @@ abstract class IntlEnUs {
     IntlHelper.errorNoActivatedSectionsTitle: 'No Activated Sections',
     IntlHelper.errorNoActivatedSectionsSubtitle: 'Configure this in the *Sections* settings',
     IntlHelper.errorNoSavedCamerasTitle: 'No Saved Cameras',
-    IntlHelper.errorNoSavedCamerasSubtitle: 'Add a saved camera through *Explore Widgets*',
+    IntlHelper.errorNoSavedCamerasSubtitle: 'Add a saved camera through *Explore Cameras*',
     IntlHelper.features: 'Features',
     IntlHelper.grid: 'Grid',
     IntlHelper.list: 'List',

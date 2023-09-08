@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simple_rich_text/simple_rich_text.dart';
 
 enum ThemedTextStyle {
   display,
@@ -50,14 +51,12 @@ class ThemedText extends StatelessWidget {
         } else {
           textStyle = textStyle;
         }
-
-        return Text(
+        return SimpleRichText(
           text,
           style: textStyle?.copyWith(
             color: color ?? theme.colorScheme.onBackground,
           ),
           maxLines: maxLines,
-          overflow: TextOverflow.fade,
         );
       }),
     );
