@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/camera_details_pop_up.dart';
+import 'package:traffeye_sg_flutter/theme.dart';
 
 class CarouselCard extends StatelessWidget {
   final TrafficCameraEntity camera;
@@ -45,7 +46,7 @@ class CarouselCard extends StatelessWidget {
               borderRadius: borderRadius,
               onPressed: () => Get.dialog(
                 CameraDetailsPopUp(camera: camera),
-                barrierColor: colorScheme.primary.withOpacity(0.5),
+                barrierColor: AppTheme.barrierColor,
               ),
               child: Align(
                 alignment: Alignment.bottomLeft,
