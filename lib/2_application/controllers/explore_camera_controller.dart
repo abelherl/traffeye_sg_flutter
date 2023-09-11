@@ -21,7 +21,7 @@ class ExploreCameraController extends GetxController {
       return;
     }
 
-    searchedCameras.value = initialCameras.value.where((element) {
+    searchedCameras.value = initialCameras.where((element) {
       late final bool isNameFound;
 
       if (element.customName == null) {
