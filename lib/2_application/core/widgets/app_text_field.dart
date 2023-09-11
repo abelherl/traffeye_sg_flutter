@@ -8,6 +8,7 @@ class AppTextField extends StatelessWidget {
   final String? title;
   final String hint;
   final String iconPath;
+  final TextInputAction? textInputAction;
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
 
@@ -16,6 +17,7 @@ class AppTextField extends StatelessWidget {
     this.title,
     this.hint = '',
     this.iconPath = '',
+    this.textInputAction,
     this.onChanged,
     this.onSubmitted,
   });
@@ -47,6 +49,7 @@ class AppTextField extends StatelessWidget {
           ),
           child: TextField(
             style: theme.textTheme.bodyLarge,
+            textInputAction: textInputAction,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: borderRadiusSmall,

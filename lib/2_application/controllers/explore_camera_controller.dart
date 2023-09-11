@@ -3,7 +3,7 @@ import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 
 class ExploreCameraController extends GetxController {
-  final initialCameras = <TrafficCameraEntity>[].obs;
+  final _initialCameras = <TrafficCameraEntity>[].obs;
   final searchedCameras = <TrafficCameraEntity>[].obs;
 
   @override
@@ -11,24 +11,22 @@ class ExploreCameraController extends GetxController {
     super.onInit();
     final cameraController = Get.find<CameraController>();
     final cameras = cameraController.cameras;
-    initialCameras.value = cameras;
+    _initialCameras.value = cameras;
     searchedCameras.value = cameras;
   }
 
   void searchFor(String keyword) {
     if (keyword == '') {
-      searchedCameras.value = initialCameras;
+      searchedCameras.value = _initialCameras;
       return;
     }
 
-    searchedCameras.value = initialCameras.where((element) {
-      late final bool isNameFound;
+    final newKeyword = keyword.toLowerCase();
 
-      if (element.customName == null) {
-        isNameFound = element.location.name.contains(keyword);
-      } else {
-        isNameFound = element.customName!.contains(keyword);
-      }
+    searchedCameras.value = _initialCameras.where((element) {
+      final isNameFound = element.customName == null
+          ? element.location.name.toLowerCase().contains(newKeyword)
+          : element.customName!.toLowerCase().contains(newKeyword);
 
       return isNameFound;
     }).toList();

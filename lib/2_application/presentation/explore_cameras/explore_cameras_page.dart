@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
+import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/map_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
@@ -27,6 +28,7 @@ class ExploreCamerasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cameraController = Get.find<CameraController>();
+    final exploreController = Get.put(ExploreCameraController());
     final mapController = Get.put(MapController());
 
     return Scaffold(
@@ -41,8 +43,8 @@ class ExploreCamerasPage extends StatelessWidget {
         curve: Curves.easeInOut,
         duration: const Duration(milliseconds: 500),
         barrierColor: AppTheme.barrierColor,
-        previewWidget: _expandedWidget(context, isPreview: true),
-        expandedWidget: _expandedWidget(context),
+        previewWidget: _expandedWidget(context, isPreview: true, exploreController: exploreController),
+        expandedWidget: _expandedWidget(context, exploreController: exploreController),
         backgroundWidget: Obx(
           () => GoogleMap(
             mapToolbarEnabled: false,
@@ -64,7 +66,7 @@ class ExploreCamerasPage extends StatelessWidget {
     );
   }
 
-  Widget _expandedWidget(BuildContext context, {bool isPreview = false}) {
+  Widget _expandedWidget(BuildContext context, {bool isPreview = false, ExploreCameraController? exploreController}) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final cameraController = Get.find<CameraController>();
@@ -99,7 +101,8 @@ class ExploreCamerasPage extends StatelessWidget {
                   hint: IntlHelper.searchCameraHint.trParams(
                       {'count': cameraController.cameras.length.toStringAsFixed(0)}),
                   iconPath: AssetsPathHelper.filledSearch,
-                  onSubmitted: (text) => print(text),
+                  textInputAction: TextInputAction.search,
+                  onSubmitted: (text) => exploreController!.searchFor(text),
                 ),
                 SizedBox(height: 16.w),
                 Obx(
@@ -117,14 +120,16 @@ class ExploreCamerasPage extends StatelessWidget {
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(16.w).copyWith(top: 0),
                 physics: const BouncingScrollPhysics(),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: cameraController.cameras.length,
-                  separatorBuilder: (_, __) => SizedBox(height: 16.w),
-                  itemBuilder: (context, index) {
-                    return CarouselCard(camera: cameraController.cameras[index]);
-                  },
+                child: Obx(
+                  () => ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: exploreController!.searchedCameras.length,
+                    separatorBuilder: (_, __) => SizedBox(height: 16.w),
+                    itemBuilder: (context, index) {
+                      return CarouselCard(camera: exploreController.searchedCameras[index]);
+                    },
+                  ),
                 ),
               ),
             ),
