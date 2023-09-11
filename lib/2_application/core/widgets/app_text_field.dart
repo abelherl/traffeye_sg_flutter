@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 import 'package:traffeye_sg_flutter/theme.dart';
 
 class AppTextField extends StatelessWidget {
-  final String title;
+  final String? title;
   final String hint;
-  final Function(String) onChanged;
+  final String iconPath;
+  final Function(String)? onChanged;
+  final Function(String)? onSubmitted;
 
   const AppTextField({
     super.key,
-    required this.title,
-    required this.hint,
-    required this.onChanged,
+    this.title,
+    this.hint = '',
+    this.iconPath = '',
+    this.onChanged,
+    this.onSubmitted,
   });
 
   @override
@@ -23,10 +28,11 @@ class AppTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ThemedText(
-          title,
-          themedTextStyle: ThemedTextStyle.label,
-        ),
+        if (title != null)
+          ThemedText(
+            title!,
+            themedTextStyle: ThemedTextStyle.label,
+          ),
         SizedBox(height: 8.w),
         Container(
           decoration: BoxDecoration(
@@ -56,8 +62,15 @@ class AppTextField extends StatelessWidget {
               hintStyle: theme.textTheme.bodyLarge?.copyWith(
                 color: AppTheme.lightHintColor,
               ),
+              suffixIcon: SvgPicture.asset(
+                iconPath,
+                height: 18.w,
+                width: 18.w,
+                fit: BoxFit.scaleDown,
+              ),
             ),
-            onChanged: (text) => onChanged(text),
+            onChanged: onChanged,
+            onSubmitted: onSubmitted,
           ),
         ),
       ],
