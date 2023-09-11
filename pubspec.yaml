@@ -16,9 +16,11 @@ dependencies:
   device_preview: ^1.1.0
   dot_navigation_bar: ^1.0.2
   drag_and_drop_lists: ^0.3.3
+  draggable_bottom_sheet: ^1.0.2
   either_dart: ^1.0.0
   equatable: ^2.0.5
   flutter_screenutil: ^5.8.4
+  flutter_scroll_shadow: ^1.2.3
   flutter_spinkit: ^5.2.0
   flutter_svg: ^2.0.7
   geocoding: ^2.1.0
