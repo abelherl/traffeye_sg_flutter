@@ -41,7 +41,7 @@ class ExploreCamerasPage extends StatelessWidget {
         expansionExtent: 110.w,
         useSafeArea: false,
         curve: Curves.easeInOut,
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 50),
         barrierColor: AppTheme.barrierColor,
         previewWidget: _expandedWidget(context, isPreview: true, exploreController: exploreController),
         expandedWidget: _expandedWidget(context, exploreController: exploreController),
