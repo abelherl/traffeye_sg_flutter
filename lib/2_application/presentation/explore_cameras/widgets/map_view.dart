@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
-import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
+import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/map_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/unfocuser.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/camera_details_pop_up.dart';
@@ -13,7 +13,7 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cameraController = Get.find<CameraController>();
+    final exploreController = Get.find<ExploreCameraController>();
     final mapController = Get.find<MapController>();
 
     return Obx(
@@ -27,7 +27,7 @@ class MapView extends StatelessWidget {
         onMapCreated: (controller) => mapController.setController(controller),
         onTap: (_) => Unfocuser.unfocus(),
         minMaxZoomPreference: mapController.minMaxZoomPreference,
-        markers: cameraController.cameras
+        markers: exploreController.searchedCameras
             .map((camera) => _getMarker(camera, mapController))
             .toSet(),
       ),

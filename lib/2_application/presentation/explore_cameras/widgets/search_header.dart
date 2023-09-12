@@ -13,11 +13,11 @@ class SearchHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
     final cameraController = Get.find<CameraController>();
     final exploreController = Get.find<ExploreCameraController>();
+
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Padding(
       padding: EdgeInsets.all(16.w),
