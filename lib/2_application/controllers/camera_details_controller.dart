@@ -36,7 +36,7 @@ class CameraDetailsController extends GetxController with StateMixin {
 
   void updateCamera({required Function() callback}) =>
       Get.find<CameraController>()
-          .saveCameraToggle(camera: camera.value, callback: callback);
+          .updateCamera(camera: camera.value, callback: callback);
 
   void _updateIsChanged() {
     final customNameChanged =

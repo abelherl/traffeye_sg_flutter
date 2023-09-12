@@ -42,14 +42,14 @@ class CameraController extends GetxController with StateMixin {
     });
   }
 
-  void saveCameraToggle(
+  void updateCamera(
       {required TrafficCameraEntity camera, required Function() callback}) {
-    final index = cameras.indexWhere((element) => element == camera);
-    if (index != -1) {
-      trafficCameraUseCases.saveCameraToggle(camera);
-      _updateAllCamerasValue();
-      callback();
-    }
+    final either = trafficCameraUseCases.updateCamera(camera);
+
+    either.fold(
+        (left) => _onFailure(left), (right) => _updateAllCamerasValue());
+
+    callback();
   }
 
   // * Private Methods

@@ -55,6 +55,7 @@ class CameraDetailsPopUp extends StatelessWidget {
                 AppTextField(
                   title: IntlHelper.customName.tr,
                   hint: IntlHelper.customNameHint.tr,
+                  initialText: controller.customName.value,
                   onChanged: (text) => controller.updateCustomName(text),
                 ),
                 SizedBox(height: 32.w),
