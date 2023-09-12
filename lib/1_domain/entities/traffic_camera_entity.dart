@@ -42,9 +42,33 @@ class TrafficCameraEntity with EquatableMixin {
       timestamp: timestamp ?? this.timestamp,
       imageUrl: imageUrl ?? this.imageUrl,
       location: location ?? this.location,
-      customName: customName,
+      customName: customName ?? this.customName,
       isSaved: isSaved ?? this.isSaved,
     );
+  }
+
+  String getName() {
+    if (customName == null) {
+      return location.name;
+    }
+
+    if (customName!.trim().isEmpty) {
+      return location.name;
+    }
+
+    return customName!;
+  }
+
+  bool isCustomNameEmpty() {
+    if (customName == null) {
+      return true;
+    }
+
+    if (customName!.trim().isEmpty) {
+      return true;
+    }
+
+    return false;
   }
 
   @override

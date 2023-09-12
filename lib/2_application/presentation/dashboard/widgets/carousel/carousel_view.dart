@@ -25,13 +25,15 @@ class CarouselView extends StatelessWidget {
           );
         }
 
-        return CarouselSlider.builder(
-          itemCount: cameraController.savedCameras.length,
-          itemBuilder: (context, index, _) {
-            final camera = cameraController.savedCameras[index];
-            return CarouselCard(camera: camera);
-          },
-          options: _carouselOptions(),
+        return Obx(
+          () => CarouselSlider.builder(
+            itemCount: cameraController.savedCameras.length,
+            itemBuilder: (context, index, _) {
+              final camera = cameraController.savedCameras[index];
+              return CarouselCard(camera: camera);
+            },
+            options: _carouselOptions(),
+          ),
         );
       },
       onLoading: Shimmer.fromColors(

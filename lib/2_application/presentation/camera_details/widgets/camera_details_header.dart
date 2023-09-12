@@ -23,6 +23,7 @@ class CameraDetailsHeader extends StatelessWidget {
     final controller = Get.find<CameraDetailsController>();
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final customName = camera.getName();
 
     timeago.setLocaleMessages('en', AppTimeagoMessages());
 
@@ -39,7 +40,7 @@ class CameraDetailsHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ThemedText(
-              camera.customName ?? camera.location.name,
+              customName,
               themedTextStyle: ThemedTextStyle.title,
               maxLines: 3,
             ),

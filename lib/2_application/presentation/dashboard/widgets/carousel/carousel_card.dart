@@ -53,7 +53,7 @@ class CarouselCard extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    camera.customName ?? camera.location.name,
+                    camera.getName(),
                     style: theme.textTheme.displayLarge?.copyWith(
                       color: colorScheme.onPrimary,
                     ),
