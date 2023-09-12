@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_scroll_shadow/flutter_scroll_shadow.dart';
+import 'package:get/get.dart';
+import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_controller.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/carousel_card.dart';
+
+class SearchBody extends StatelessWidget {
+  const SearchBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final exploreController = Get.find<ExploreCameraController>();
+
+    return Expanded(
+      child: ScrollShadow(
+        size: 15,
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(16.w).copyWith(top: 0),
+          physics: const BouncingScrollPhysics(),
+          child: Obx(
+            () => exploreController.searchedCameras.isEmpty
+                ? WarningWidget(
+                    title: IntlHelper.errorNoCamerasFoundTitle.tr,
+                    subtitle: IntlHelper.errorNoCamerasFoundSubtitle.tr)
+                : ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: exploreController.searchedCameras.length,
+                    separatorBuilder: (_, __) => SizedBox(height: 16.w),
+                    itemBuilder: (context, index) => CarouselCard(
+                        camera: exploreController.searchedCameras[index])),
+          ),
+        ),
+      ),
+    );
+  }
+}
