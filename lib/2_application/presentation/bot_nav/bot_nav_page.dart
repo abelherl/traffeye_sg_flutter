@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/bot_nav_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/bot_nav/widgets/app_bot_nav_bar.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/bot_nav/widgets/fade_indexed_stack.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/dashboard_page.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/saved_cameras/saved_cameras_page.dart';
 
@@ -18,7 +17,7 @@ class BotNavPage extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       body: Obx(
-        () => FadeIndexedStack(
+        () => IndexedStack(
           index: controller.index.value,
           children: const [
             DashboardPage(),
