@@ -52,6 +52,14 @@ class CameraController extends GetxController with StateMixin {
     callback();
   }
 
+  void updateCameras(
+      {required List<TrafficCameraEntity> cameras}) {
+    final either = trafficCameraUseCases.updateAllCameras(cameras);
+
+    either.fold(
+            (left) => _onFailure(left), (right) => _updateAllCamerasValue());
+  }
+
   // * Private Methods
 
   void _initTimeago() {

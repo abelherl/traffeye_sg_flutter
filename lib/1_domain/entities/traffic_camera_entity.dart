@@ -17,6 +17,8 @@ class TrafficCameraEntity with EquatableMixin {
   String? customName;
   @HiveField(5)
   bool isSaved;
+  @HiveField(6)
+  int? sortIndex;
 
   TrafficCameraEntity({
     required this.cameraId,
@@ -25,9 +27,11 @@ class TrafficCameraEntity with EquatableMixin {
     required this.location,
     this.customName,
     this.isSaved = false,
+    this.sortIndex,
   });
 
-  factory TrafficCameraEntity.fromModel(TrafficCameraModel model, {required LocationEntity location}) {
+  factory TrafficCameraEntity.fromModel(TrafficCameraModel model,
+      {required LocationEntity location}) {
     return TrafficCameraEntity(
       cameraId: model.cameraId,
       timestamp: model.timestamp,
@@ -36,7 +40,13 @@ class TrafficCameraEntity with EquatableMixin {
     );
   }
 
-  TrafficCameraEntity copyWith({String? customName, bool? isSaved, LocationEntity? location, String? imageUrl, DateTime? timestamp}) {
+  TrafficCameraEntity copyWith(
+      {String? customName,
+      bool? isSaved,
+      LocationEntity? location,
+      String? imageUrl,
+      DateTime? timestamp,
+      int? sortIndex}) {
     return TrafficCameraEntity(
       cameraId: cameraId,
       timestamp: timestamp ?? this.timestamp,
@@ -44,6 +54,7 @@ class TrafficCameraEntity with EquatableMixin {
       location: location ?? this.location,
       customName: customName ?? this.customName,
       isSaved: isSaved ?? this.isSaved,
+      sortIndex: sortIndex ?? this.sortIndex,
     );
   }
 
@@ -88,6 +99,7 @@ class TrafficCameraAdapter extends TypeAdapter<TrafficCameraEntity> {
       location: reader.read(),
       customName: reader.read(),
       isSaved: reader.read(),
+      sortIndex: reader.read(),
     );
   }
 
@@ -99,6 +111,7 @@ class TrafficCameraAdapter extends TypeAdapter<TrafficCameraEntity> {
       ..write(obj.imageUrl)
       ..write(obj.location)
       ..write(obj.customName)
-      ..write(obj.isSaved);
+      ..write(obj.isSaved)
+      ..write(obj.sortIndex);
   }
 }
