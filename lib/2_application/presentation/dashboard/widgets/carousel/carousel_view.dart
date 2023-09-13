@@ -18,21 +18,20 @@ class CarouselView extends StatelessWidget {
 
     return cameraController.obx(
       (state) {
-
         return Obx(
           () => cameraController.savedCameras.isEmpty
               ? WarningWidget(
-                title: IntlHelper.errorNoSavedCamerasTitle.tr,
-                subtitle: IntlHelper.errorNoSavedCamerasSubtitle.tr,
-              )
+                  title: IntlHelper.errorNoSavedCamerasTitle.tr,
+                  subtitle: IntlHelper.errorNoSavedCamerasSubtitle.tr,
+                )
               : CarouselSlider.builder(
                   itemCount: cameraController.savedCameras.length,
                   itemBuilder: (context, index, _) {
                     final camera = cameraController.savedCameras[index];
                     return CarouselCard(camera: camera);
                   },
-                options: _carouselOptions(),
-              ),
+                  options: _carouselOptions(),
+                ),
         );
       },
       onLoading: Shimmer.fromColors(
