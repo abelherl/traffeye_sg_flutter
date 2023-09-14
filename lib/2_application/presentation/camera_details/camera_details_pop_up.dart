@@ -14,7 +14,7 @@ import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/wi
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/widgets/camera_details_header.dart';
 import 'package:traffeye_sg_flutter/theme.dart';
 
-class CameraDetailsPopUp {
+abstract class CameraDetailsPopUp {
   static Future openDialog({required TrafficCameraEntity camera}) async {
     await Get.dialog(
       _CameraDetailsPopUp(camera: camera),

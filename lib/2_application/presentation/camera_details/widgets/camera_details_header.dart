@@ -39,10 +39,12 @@ class CameraDetailsHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ThemedText(
-              customName,
-              themedTextStyle: ThemedTextStyle.title,
-              maxLines: 3,
+            Expanded(
+              child: ThemedText(
+                customName,
+                themedTextStyle: ThemedTextStyle.title,
+                maxLines: 3,
+              ),
             ),
             Obx(
               () => GestureDetector(
