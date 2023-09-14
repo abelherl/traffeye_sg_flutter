@@ -49,10 +49,7 @@ class MapView extends StatelessWidget {
 
         mapController.setMapZoomLevel(
             location: location, zoom: mapController.dialogZoomIn);
-        Get.dialog(
-          CameraDetailsPopUp(camera: camera),
-          barrierColor: AppTheme.barrierColor,
-        ).then((_) => mapController.setMapZoomLevel(
+        CameraDetailsPopUp.openDialog(camera: camera).then((_) => mapController.setMapZoomLevel(
             location: location, zoom: currentZoom));
       },
     );

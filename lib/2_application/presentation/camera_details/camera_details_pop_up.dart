@@ -12,14 +12,21 @@ import 'package:traffeye_sg_flutter/2_application/core/widgets/negative_button.d
 import 'package:traffeye_sg_flutter/2_application/core/widgets/save_button.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/widgets/camera_details_container.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/widgets/camera_details_header.dart';
+import 'package:traffeye_sg_flutter/theme.dart';
 
-class CameraDetailsPopUp extends StatelessWidget {
+class CameraDetailsPopUp {
+  static Future openDialog({required TrafficCameraEntity camera}) async {
+    await Get.dialog(
+      _CameraDetailsPopUp(camera: camera),
+      barrierColor: AppTheme.barrierColor,
+    );
+  }
+}
+
+class _CameraDetailsPopUp extends StatelessWidget {
   final TrafficCameraEntity camera;
 
-  const CameraDetailsPopUp({
-    Key? key,
-    required this.camera,
-  }) : super(key: key);
+  const _CameraDetailsPopUp({required this.camera});
 
   @override
   Widget build(BuildContext context) {
