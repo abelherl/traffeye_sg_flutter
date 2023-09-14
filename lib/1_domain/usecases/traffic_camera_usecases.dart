@@ -29,4 +29,16 @@ class TrafficCameraUseCases {
       List<TrafficCameraEntity> cameras) {
     return trafficCameraRepository.updateAllCameras(cameras);
   }
+
+  Either<Failure, List<TrafficCameraEntity>> updateSavedCameras(
+      List<TrafficCameraEntity> savedCameras) {
+    int index = 0;
+    for (final camera in savedCameras) {
+      camera.sortIndex = index;
+      index++;
+    }
+
+    savedCameras.sort((a, b) => a.sortIndex!.compareTo(b.sortIndex!));
+    return trafficCameraRepository.updateAllCameras(savedCameras);
+  }
 }
