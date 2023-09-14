@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
 

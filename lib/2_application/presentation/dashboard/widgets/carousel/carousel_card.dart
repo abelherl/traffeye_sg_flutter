@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
