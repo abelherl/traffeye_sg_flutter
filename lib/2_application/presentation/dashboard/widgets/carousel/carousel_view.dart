@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/carousel_card.dart';
 
@@ -13,7 +14,7 @@ class CarouselView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = BorderRadius.circular(16.r);
+    final borderRadius = StyleHelper.borderRadiusBig;
     final cameraController = Get.find<CameraController>();
 
     return cameraController.obx(

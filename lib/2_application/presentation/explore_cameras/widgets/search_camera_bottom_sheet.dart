@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/explore_cameras/widgets/search_body.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/explore_cameras/widgets/search_header.dart';
 
@@ -12,7 +13,7 @@ class SearchCameraBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final radius = isPreview ? 16.r : 0.0;
+    final radius = isPreview ? StyleHelper.radiusBig : 0.0;
 
     return Container(
       decoration: BoxDecoration(

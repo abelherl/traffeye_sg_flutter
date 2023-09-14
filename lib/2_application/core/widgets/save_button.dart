@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 import 'package:traffeye_sg_flutter/theme.dart';
 
@@ -28,7 +29,7 @@ class SaveButton extends StatelessWidget {
         ),
         shape: MaterialStatePropertyAll(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: StyleHelper.borderRadiusSmall,
           ),
         ),
         backgroundColor: MaterialStatePropertyAll(

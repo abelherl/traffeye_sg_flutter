@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/theme.dart';
 
 class AppInkWell extends StatelessWidget {
@@ -24,7 +25,7 @@ class AppInkWell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = this.borderRadius ?? BorderRadius.circular(16.r);
+    final borderRadius = this.borderRadius ?? StyleHelper.borderRadiusBig;
     final inkColor = this.inkColor ?? AppTheme.imagesSplashColor;
     final padding = this.padding ?? EdgeInsets.all(16.w);
     final alignment = this.alignment ?? Alignment.bottomLeft;

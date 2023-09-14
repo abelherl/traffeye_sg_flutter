@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 
 class CameraDetailsContainer extends StatelessWidget {
   final List<Widget> children;
@@ -18,7 +19,7 @@ class CameraDetailsContainer extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               color: colorScheme.background,
-              borderRadius: BorderRadius.circular(18.r),
+              borderRadius: StyleHelper.borderRadiusBig,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,

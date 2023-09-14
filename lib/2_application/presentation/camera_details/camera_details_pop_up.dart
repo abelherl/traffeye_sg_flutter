@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_details_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_text_field.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/negative_button.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/save_button.dart';
@@ -46,7 +47,7 @@ class _CameraDetailsPopUp extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(16.r),
+                  top: Radius.circular(StyleHelper.radiusBig),
                 ),
               ),
             ),

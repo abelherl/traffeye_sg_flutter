@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
 
 class FeaturesCardBase extends StatelessWidget {
@@ -24,7 +25,7 @@ class FeaturesCardBase extends StatelessWidget {
       aspectRatio: 328 / 190,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: StyleHelper.borderRadiusBig,
           image: DecorationImage(
             image: AssetImage(imagePath),
             fit: BoxFit.fill,
