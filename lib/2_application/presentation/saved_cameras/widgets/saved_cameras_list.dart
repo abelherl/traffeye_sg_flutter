@@ -10,23 +10,25 @@ class SavedCamerasList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<SavedCamerasController>();
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: DragAndDropLists(
-        itemDragOnLongPress: false,
-        disableScrolling: true,
-        children: [
-          DragAndDropList(
-            canDrag: false,
-            children: controller.savedCameras.map((camera) {
-              return DragAndDropItem(
-                child: SavedCameraListItem(camera: camera),
-              );
-            }).toList(),
-          ),
-        ],
-        onItemReorder: controller.reorder,
-        onListReorder: (_, __) {},
+    return Obx(
+      () => SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: DragAndDropLists(
+          itemDragOnLongPress: false,
+          disableScrolling: true,
+          children: [
+            DragAndDropList(
+              canDrag: false,
+              children: controller.savedCameras.map((camera) {
+                return DragAndDropItem(
+                  child: SavedCameraListItem(camera: camera),
+                );
+              }).toList(),
+            ),
+          ],
+          onItemReorder: controller.reorder,
+          onListReorder: (_, __) {},
+        ),
       ),
     );
   }
