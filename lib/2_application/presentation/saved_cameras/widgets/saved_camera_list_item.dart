@@ -19,7 +19,7 @@ class SavedCameraListItem extends StatelessWidget {
       height: 70.w,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8.r),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: AppInkWell(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
