@@ -1,11 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/camera_details_pop_up.dart';
-import 'package:traffeye_sg_flutter/theme.dart';
 
 class CarouselCard extends StatelessWidget {
   final TrafficCameraEntity camera;
