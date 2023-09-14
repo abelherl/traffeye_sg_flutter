@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 import 'package:traffeye_sg_flutter/theme.dart';
 
@@ -27,7 +28,7 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final borderRadiusSmall = BorderRadius.circular(8.r);
+    final borderRadiusSmall = StyleHelper.borderRadiusSmall;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,7 +3,6 @@ import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 
 class SavedCamerasController extends GetxController {
-  final isEditing = false.obs;
   final _initialCameras = <TrafficCameraEntity>[].obs;
   final savedCameras = <TrafficCameraEntity>[].obs;
   final cameraController = Get.find<CameraController>();
@@ -14,16 +13,6 @@ class SavedCamerasController extends GetxController {
 
     final cameras = cameraController.savedCameras;
 
-    int index = 0;
-    for (final camera in cameras) {
-      if (camera.sortIndex == 0) {
-        camera.sortIndex = index;
-      }
-      index++;
-    }
-
-    cameras.sort((a, b) => a.sortIndex!.compareTo(b.sortIndex!));
-
     _initialCameras.value = cameras;
     savedCameras.value = cameras;
 
@@ -32,15 +21,10 @@ class SavedCamerasController extends GetxController {
     });
   }
 
-  void isEditingToggle() => isEditing.toggle();
-
   void reorder(
       int oldItemIndex, int oldListIndex, int newItemIndex, int newListIndex) {
     final movedItem = savedCameras.removeAt(oldItemIndex);
     savedCameras.insert(newItemIndex, movedItem);
-  }
-
-  void updateSavedCameras() {
-    cameraController.updateCameras(cameras: savedCameras);
+    cameraController.updateSavedCameras(savedCameras: savedCameras);
   }
 }

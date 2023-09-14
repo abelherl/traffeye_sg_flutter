@@ -6,7 +6,6 @@ import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_con
 import 'package:traffeye_sg_flutter/2_application/controllers/map_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/unfocuser.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/camera_details_pop_up.dart';
-import 'package:traffeye_sg_flutter/theme.dart';
 
 class MapView extends StatelessWidget {
   const MapView({Key? key}) : super(key: key);
@@ -49,10 +48,7 @@ class MapView extends StatelessWidget {
 
         mapController.setMapZoomLevel(
             location: location, zoom: mapController.dialogZoomIn);
-        Get.dialog(
-          CameraDetailsPopUp(camera: camera),
-          barrierColor: AppTheme.barrierColor,
-        ).then((_) => mapController.setMapZoomLevel(
+        CameraDetailsPopUp.openDialog(camera: camera).then((_) => mapController.setMapZoomLevel(
             location: location, zoom: currentZoom));
       },
     );

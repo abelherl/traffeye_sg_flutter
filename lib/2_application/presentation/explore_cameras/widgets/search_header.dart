@@ -5,6 +5,7 @@ import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.
 import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_text_field.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
@@ -30,7 +31,7 @@ class SearchHeader extends StatelessWidget {
               height: 4.w,
               decoration: BoxDecoration(
                 color: colorScheme.primary,
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: StyleHelper.borderRadiusSmall,
               ),
             ),
           ),

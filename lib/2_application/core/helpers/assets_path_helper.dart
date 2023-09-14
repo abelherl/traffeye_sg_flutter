@@ -19,6 +19,7 @@ abstract class AssetsPathHelper {
   // * Vectors - Filled
   static const filledBack = '${vectorsFilled}ic_back.svg';
   static const filledBookmark = '${vectorsFilled}ic_bookmark.svg';
+  static const filledCheckmark = '${vectorsFilled}ic_checkmark.svg';
   static const filledCamera = '${vectorsFilled}ic_camera.svg';
   static const filledDraggable = '${vectorsFilled}ic_draggable.svg';
   static const filledEdit = '${vectorsFilled}ic_edit.svg';

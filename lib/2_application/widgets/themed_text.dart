@@ -19,12 +19,12 @@ class ThemedText extends StatelessWidget {
 
   const ThemedText(
     this.text, {
-    Key? key,
+    super.key,
     this.themedTextStyle,
     this.color,
     this.textStyle,
     this.maxLines,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

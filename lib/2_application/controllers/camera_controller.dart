@@ -60,6 +60,14 @@ class CameraController extends GetxController with StateMixin {
             (left) => _onFailure(left), (right) => _updateAllCamerasValue());
   }
 
+  void updateSavedCameras(
+      {required List<TrafficCameraEntity> savedCameras}) {
+    final either = trafficCameraUseCases.updateSavedCameras(savedCameras);
+
+    either.fold(
+            (left) => _onFailure(left), (right) => _updateAllCamerasValue());
+  }
+
   // * Private Methods
 
   void _initTimeago() {
@@ -112,6 +120,15 @@ class CameraController extends GetxController with StateMixin {
     either2.fold((left) => _onFailure(left), (right) {
       savedCameras.value = right;
     });
+
+    for (final camera in savedCameras) {
+      if (camera.sortIndex == null) {
+        updateSavedCameras(savedCameras: savedCameras);
+        return;
+      }
+    }
+
+    savedCameras.sort((a, b) => a.sortIndex!.compareTo(b.sortIndex!));
 
     _updateLastUpdated(dateTime: cameras.firstOrNull?.timestamp);
   }
