@@ -121,6 +121,13 @@ class CameraController extends GetxController with StateMixin {
       savedCameras.value = right;
     });
 
+    for (final camera in savedCameras) {
+      if (camera.sortIndex == null) {
+        updateSavedCameras(savedCameras: savedCameras);
+        return;
+      }
+    }
+
     savedCameras.sort((a, b) => a.sortIndex!.compareTo(b.sortIndex!));
 
     _updateLastUpdated(dateTime: cameras.firstOrNull?.timestamp);
