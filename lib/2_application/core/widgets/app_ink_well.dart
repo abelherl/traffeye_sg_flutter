@@ -5,6 +5,7 @@ import 'package:traffeye_sg_flutter/theme.dart';
 class AppInkWell extends StatelessWidget {
   final Widget child;
   final Function() onPressed;
+  final Function()? onLongPress;
   final BorderRadius? borderRadius;
   final Color? inkColor;
   final EdgeInsets? padding;
@@ -14,6 +15,7 @@ class AppInkWell extends StatelessWidget {
     super.key,
     required this.child,
     required this.onPressed,
+    this.onLongPress,
     this.borderRadius,
     this.inkColor,
     this.padding,
@@ -35,7 +37,8 @@ class AppInkWell extends StatelessWidget {
           borderRadius: borderRadius,
           splashColor: inkColor,
           highlightColor: inkColor,
-          onTap: () => onPressed(),
+          onTap: onPressed,
+          onLongPress: onLongPress,
           child: Padding(
             padding: padding,
             child: Align(
