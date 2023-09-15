@@ -4,6 +4,7 @@ import 'package:flutter_scroll_shadow/flutter_scroll_shadow.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/app_scroll_view.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/carousel_card.dart';
 
@@ -17,9 +18,8 @@ class SearchBody extends StatelessWidget {
     return Expanded(
       child: ScrollShadow(
         size: 15,
-        child: SingleChildScrollView(
+        child: AppScrollView(
           padding: EdgeInsets.all(16.w).copyWith(top: 0),
-          physics: const BouncingScrollPhysics(),
           child: Obx(
             () => exploreController.searchedCameras.isEmpty
                 ? WarningWidget(

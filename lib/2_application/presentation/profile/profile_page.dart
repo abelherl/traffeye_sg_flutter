@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_list_card.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/app_scroll_view.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -14,12 +15,12 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(IntlHelper.profile.tr),
+        elevation: 0,
         centerTitle: true,
       ),
       body: Container(
         color: Theme.of(context).colorScheme.background,
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
+        child: AppScrollView(
           padding: EdgeInsets.only(bottom: 100.w),
           child: Column(
             children: [

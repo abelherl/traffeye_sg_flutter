@@ -19,6 +19,7 @@ class SavedCamerasPage extends StatelessWidget {
       () => Scaffold(
         appBar: AppBar(
           title: Text(IntlHelper.savedCameras.tr),
+          elevation: 0,
           centerTitle: true,
         ),
         body: Container(

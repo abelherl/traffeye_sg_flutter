@@ -28,6 +28,7 @@ class ExploreCamerasPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(IntlHelper.cardCamerasTitle.tr),
+          elevation: 0,
           centerTitle: true,
         ),
         body: DraggableBottomSheet(
