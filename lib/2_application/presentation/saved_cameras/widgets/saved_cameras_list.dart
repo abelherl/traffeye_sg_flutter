@@ -16,6 +16,7 @@ class SavedCamerasList extends StatelessWidget {
         child: DragAndDropLists(
           itemDragOnLongPress: false,
           disableScrolling: true,
+          lastItemTargetHeight: 0,
           children: [
             DragAndDropList(
               canDrag: false,

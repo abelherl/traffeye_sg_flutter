@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
@@ -20,6 +22,13 @@ abstract class AppListCard {
       String suffix = ''}) {
     return _ProfileBasicListCard(
         title: title, onPressed: onPressed, suffix: suffix);
+  }
+
+  static Widget profileSwitch(
+      {required String title,
+      required RxBool value}) {
+    return _ProfileSwitchListCard(
+        title: title, value: value);
   }
 }
 
@@ -108,6 +117,41 @@ class _ProfileBasicListCard extends StatelessWidget {
           SizedBox(width: 10.w),
           SvgPicture.asset(AssetsPathHelper.filledNext),
         ],
+      ),
+    );
+  }
+}
+
+class _ProfileSwitchListCard extends StatelessWidget {
+  final String title;
+  final RxBool value;
+
+  const _ProfileSwitchListCard({
+    required this.title,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => _BaseAppListCard(
+        onPressed: () => value.toggle(),
+        child: Row(
+          children: [
+            Expanded(
+              child: ThemedText(
+                title,
+                themedTextStyle: ThemedTextStyle.body,
+                maxLines: 2,
+              ),
+            ),
+            SizedBox(width: 10.w),
+            CupertinoSwitch(
+              value: value.value,
+              onChanged: (_) => value.toggle(),
+            ),
+          ],
+        ),
       ),
     );
   }
