@@ -34,6 +34,7 @@ abstract class IntlEnUs {
     IntlHelper.aLongTimeAgo: 'a long time ago',
 
     // * Profile
+    IntlHelper.profile: 'Profile',
     IntlHelper.about: 'About',
     IntlHelper.aboutTitle: 'Description',
     IntlHelper.aboutTexts: "*TraffEye SG* is a 100% free, no ads, and open-source Flutter Android and iOS app made to get live snapshots of traffic cameras in Singapore.\nI will attribute the technologies and assets used to develop this app below. I will also put in the app's repository and Figma file for this app.",

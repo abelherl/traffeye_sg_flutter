@@ -35,6 +35,7 @@ abstract class IntlHelper {
   static const minutesAgo = 'minutes_ago';
 
   // * Profile
+  static const profile = 'profile';
   static const about = 'about';
   static const aboutTitle = 'about_title';
   static const aboutTexts = 'about_texts';
