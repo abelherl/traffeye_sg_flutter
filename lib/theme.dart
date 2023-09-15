@@ -18,11 +18,12 @@ abstract class AppTheme {
   // * Public Colors
   static const Color positiveColor = Color(0xFF6DBB61);
   static const Color negativeColor = Color(0xFFCB4444);
+  static const Color lightCaptionColor = Color(0xFF7D7D7D);
   static const Color lightDisableColor = Color(0xFFB6B6B6);
   static const Color lightHintColor = Color(0xFF9E9E9E);
   static final Color negativeSplashColor = negativeColor.withOpacity(0.1);
   static final Color positiveSplashColor = positiveColor.withOpacity(0.1);
-  static final Color imagesSplashColor = _lightAccentVariantColor.withOpacity(0.4);
+  static final Color imagesSplashColor = _lightAccentVariantColor.withOpacity(0.3);
   static final Color barrierColor = _lightPrimaryColor.withOpacity(0.5);
 
   // * Text Style - Light
