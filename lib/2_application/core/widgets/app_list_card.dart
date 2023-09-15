@@ -9,6 +9,8 @@ abstract class AppListCard {
   }
 }
 
+// * Base card
+
 class _BaseAppListCard extends StatelessWidget {
   final Widget child;
   final Function() onPressed;
@@ -37,6 +39,8 @@ class _BaseAppListCard extends StatelessWidget {
     );
   }
 }
+
+// * Card variants
 
 class _NormalAppListCard extends StatelessWidget {
   final Widget child;
