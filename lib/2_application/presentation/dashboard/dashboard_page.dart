@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_scroll_shadow/flutter_scroll_shadow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/features_section.dart';
@@ -13,50 +14,49 @@ class DashboardPage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              colors: [colorScheme.primary, colorScheme.primaryContainer],
+              center: Alignment.topRight,
+              radius: 4,
+            ),
+          ),
+        ),
+        title: Row(
+          children: [
+            Hero(
+              tag: 'logo',
+              child: SvgPicture.asset(
+                AssetsPathHelper.filledLogo,
+              ),
+            ),
+            const Spacer(),
+          ],
+        ),
+      ),
       body: Container(
         height: double.infinity,
         color: colorScheme.background,
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [colorScheme.primary, colorScheme.primaryContainer],
-                    center: Alignment.topRight,
-                    radius: 1.3,
-                  ),
-                ),
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(16.w).copyWith(top: 36.w),
-                      child: Hero(
-                        tag: 'logo',
-                        child: SvgPicture.asset(
-                          AssetsPathHelper.filledLogo,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+        child: ScrollShadow(
+          size: 15,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SavedCamerasSection(),
+                  SizedBox(height: 24.w),
+                  const FeaturesSection(),
+                  SizedBox(height: 80.w),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SavedCamerasSection(),
-                    SizedBox(height: 24.w),
-                    const FeaturesSection(),
-                    SizedBox(height: 80.w),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
