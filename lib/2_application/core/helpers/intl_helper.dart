@@ -35,6 +35,7 @@ abstract class IntlHelper {
   static const minutesAgo = 'minutes_ago';
 
   // * Profile
+  static const profile = 'profile';
   static const about = 'about';
   static const aboutTitle = 'about_title';
   static const aboutTexts = 'about_texts';
@@ -44,6 +45,7 @@ abstract class IntlHelper {
   static const aboutCameraApi = 'about_camera_api';
   static const aboutFigma = 'about_figma';
   static const aboutGitHub = 'about_github';
+  static const dashboard = 'dashboard';
   static const dashboardLayout = 'dashboard_layout';
   static const dashboardLayoutTitle = 'dashboard_layout_title';
   static const dashboardLayoutTexts = 'dashboard_layout_texts';
@@ -59,5 +61,4 @@ abstract class IntlHelper {
   static const locationTexts = 'location_texts';
   static const other = 'other';
   static const personalization = 'personalization';
-  static const sections = 'sections';
 }

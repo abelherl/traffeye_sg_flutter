@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/app_scroll_view.dart';
 
 class CameraDetailsContainer extends StatelessWidget {
   final List<Widget> children;
@@ -11,8 +12,7 @@ class CameraDetailsContainer extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Center(
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+      child: AppScrollView(
         child: Dialog(
           backgroundColor: Colors.transparent,
           child: Container(

@@ -12,7 +12,7 @@ abstract class IntlEnUs {
     IntlHelper.customName: 'Custom Name',
     IntlHelper.customNameHint: 'E.g., My Apartment',
     IntlHelper.errorNoActivatedSectionsTitle: 'No Activated Sections',
-    IntlHelper.errorNoActivatedSectionsSubtitle: 'Configure this in the *Sections* settings',
+    IntlHelper.errorNoActivatedSectionsSubtitle: 'Configure this in the *Dashboard* settings',
     IntlHelper.errorNoSavedCamerasTitle: 'No Saved Cameras',
     IntlHelper.errorNoSavedCamerasSubtitle: 'Add a saved camera through *Explore Cameras*',
     IntlHelper.errorNoCamerasFoundTitle: 'No Cameras Found',
@@ -34,6 +34,7 @@ abstract class IntlEnUs {
     IntlHelper.aLongTimeAgo: 'a long time ago',
 
     // * Profile
+    IntlHelper.profile: 'Profile',
     IntlHelper.about: 'About',
     IntlHelper.aboutTitle: 'Description',
     IntlHelper.aboutTexts: "*TraffEye SG* is a 100% free, no ads, and open-source Flutter Android and iOS app made to get live snapshots of traffic cameras in Singapore.\nI will attribute the technologies and assets used to develop this app below. I will also put in the app's repository and Figma file for this app.",
@@ -43,6 +44,7 @@ abstract class IntlEnUs {
     IntlHelper.aboutCameraApi: "Traffic Camera's API",
     IntlHelper.aboutFigma: "TraffEye's Figma",
     IntlHelper.aboutGitHub: "TraffEye's GitHub",
+    IntlHelper.dashboard: 'Dashboard',
     IntlHelper.dashboardLayout: 'Dashboard Layout',
     IntlHelper.dashboardLayoutTitle: 'Definition',
     IntlHelper.dashboardLayoutTexts: 'Dashboard layout will change the layout of your *Saved Cameras* section in your dashboard page.',
@@ -58,6 +60,5 @@ abstract class IntlEnUs {
     IntlHelper.locationTexts: 'The selected location will only used for getting the optional weather updates. You can turn off the *Weather* section in the previous page if you don’t need it.',
     IntlHelper.other: 'Other',
     IntlHelper.personalization: 'Personalization',
-    IntlHelper.sections: 'Sections',
   };
 }
