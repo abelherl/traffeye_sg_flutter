@@ -15,10 +15,10 @@ class BotNavPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BotNavController());
 
-    return Scaffold(
-      extendBody: true,
-      body: Obx(
-        () => IndexedStack(
+    return Obx(
+      () => Scaffold(
+        extendBody: true,
+        body: IndexedStack(
           index: controller.index.value,
           children: const [
             DashboardPage(),
@@ -26,11 +26,13 @@ class BotNavPage extends StatelessWidget {
             ProfilePage(),
           ],
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: const AppFloatingActionButton(),
-      bottomNavigationBar: AppBotNavBar(
-        onTap: controller.changeIndexTo,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: controller.index.value == 0
+            ? const AppFloatingActionButton()
+            : null,
+        bottomNavigationBar: AppBotNavBar(
+          onTap: controller.changeIndexTo,
+        ),
       ),
     );
   }
