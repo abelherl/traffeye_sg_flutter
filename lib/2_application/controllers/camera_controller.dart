@@ -148,6 +148,11 @@ class CameraController extends GetxController with StateMixin {
   }
 
   void _updateLastUpdated({DateTime? dateTime}) {
+    if (dateTime == _lastUpdated.value) {
+      _hideRefreshButton(reverse: true);
+      return;
+    }
+
     _lastUpdated.value = dateTime ?? _lastUpdated.value;
     lastUpdatedString.value = _getLastUpdated();
   }
