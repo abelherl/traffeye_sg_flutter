@@ -139,6 +139,47 @@ class ProfileSwitchListCard extends StatelessWidget {
   }
 }
 
+class ProfileSelectedListCard extends StatelessWidget {
+  final String title;
+  final bool isSelected;
+  final Function() onPressed;
+
+  const ProfileSelectedListCard({
+  super.key,
+  required this.title,
+  required this.isSelected,
+  required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return _BaseSmallAppListCard(
+      onPressed: onPressed,
+      child: Row(
+        children: [
+          Expanded(
+            child: ThemedText(
+              title,
+              themedTextStyle: ThemedTextStyle.body,
+              maxLines: 2,
+            ),
+          ),
+          SizedBox(width: 10.w),
+          if (isSelected)
+            SvgPicture.asset(
+              AssetsPathHelper.filledCheckmark,
+              colorFilter: ColorFilter.mode(
+                colorScheme.primary,
+                BlendMode.srcIn,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
 // class _BaseAppListCard extends StatelessWidget {
 //   final Widget child;
 //   final Function() onPressed;
