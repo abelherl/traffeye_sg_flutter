@@ -59,6 +59,7 @@ class CarouselView extends StatelessWidget {
     return CarouselOptions(
       autoPlay: false,
       enlargeCenterPage: true,
+      enlargeFactor: 0.25,
       viewportFraction: 0.8,
       aspectRatio: 328 / 164,
     );
