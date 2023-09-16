@@ -16,23 +16,20 @@ class SearchBody extends StatelessWidget {
     final exploreController = Get.find<ExploreCameraController>();
 
     return Expanded(
-      child: ScrollShadow(
-        size: 15,
-        child: AppScrollView(
-          padding: EdgeInsets.all(16.w).copyWith(top: 0),
-          child: Obx(
-            () => exploreController.searchedCameras.isEmpty
-                ? WarningWidget(
-                    title: IntlHelper.errorNoCamerasFoundTitle.tr,
-                    subtitle: IntlHelper.errorNoCamerasFoundSubtitle.tr)
-                : ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: exploreController.searchedCameras.length,
-                    separatorBuilder: (_, __) => SizedBox(height: 16.w),
-                    itemBuilder: (context, index) => CarouselCard(
-                        camera: exploreController.searchedCameras[index])),
-          ),
+      child: AppScrollView(
+        padding: EdgeInsets.all(16.w).copyWith(top: 0),
+        child: Obx(
+          () => exploreController.searchedCameras.isEmpty
+              ? WarningWidget(
+                  title: IntlHelper.errorNoCamerasFoundTitle.tr,
+                  subtitle: IntlHelper.errorNoCamerasFoundSubtitle.tr)
+              : ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: exploreController.searchedCameras.length,
+                  separatorBuilder: (_, __) => SizedBox(height: 16.w),
+                  itemBuilder: (context, index) => CarouselCard(
+                      camera: exploreController.searchedCameras[index])),
         ),
       ),
     );

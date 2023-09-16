@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/app_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
-import 'package:traffeye_sg_flutter/2_application/core/widgets/app_scroll_view.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/features_section.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/saved_cameras_section.dart';
@@ -58,20 +57,16 @@ class DashboardPage extends StatelessWidget {
               );
             }
 
-            return ScrollShadow(
-              size: 15,
-              child: AppScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SavedCamerasSection(),
-                      SizedBox(height: 24.w),
-                      const FeaturesSection(),
-                      SizedBox(height: 80.w),
-                    ],
-                  ),
+            return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.w),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SavedCamerasSection(),
+                    FeaturesSection(),
+                  ],
                 ),
               ),
             );
