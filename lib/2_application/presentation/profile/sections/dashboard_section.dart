@@ -18,14 +18,17 @@ class DashboardSection extends StatelessWidget {
         ProfileSwitchListCard(
           title: IntlHelper.savedCameras.tr,
           value: controller.isSavedCamerasActive,
+          onChanged: controller.toggleSavedCameras,
         ),
         ProfileSwitchListCard(
           title: IntlHelper.cardCamerasTitle.tr,
           value: controller.isExploreCamerasActive,
+          onChanged: controller.toggleExploreCameras,
         ),
         ProfileSwitchListCard(
           title: IntlHelper.cardWidgetsTitle.tr,
           value: controller.isHomeWidgetsActive,
+          onChanged: controller.toggleHomeWidgets,
         ),
       ],
     );

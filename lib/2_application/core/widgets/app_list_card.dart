@@ -185,18 +185,20 @@ class ProfileRedirectListCard extends StatelessWidget implements AppListCard {
 class ProfileSwitchListCard extends StatelessWidget {
   final String title;
   final RxBool value;
+  final Function() onChanged;
 
   const ProfileSwitchListCard({
     super.key,
     required this.title,
     required this.value,
+    required this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => _BaseSmallAppListCard(
-        onPressed: () => value.toggle(),
+        onPressed: onChanged,
         child: Row(
           children: [
             Expanded(
@@ -209,7 +211,7 @@ class ProfileSwitchListCard extends StatelessWidget {
             SizedBox(width: 10.w),
             CupertinoSwitch(
               value: value.value,
-              onChanged: (_) => value.toggle(),
+              onChanged: (_) => onChanged(),
             ),
           ],
         ),
