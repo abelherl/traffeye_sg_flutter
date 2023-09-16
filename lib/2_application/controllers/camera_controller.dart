@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/failures/failures.dart';
 import 'package:traffeye_sg_flutter/1_domain/usecases/traffic_camera_usecases.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/intl/app_timeago_messages.dart';
 import 'package:traffeye_sg_flutter/2_application/core/snack_bar/app_snack_bar.dart';
 import 'package:traffeye_sg_flutter/2_application/core/snack_bar/app_snack_bar_data.dart';
@@ -93,6 +94,12 @@ class CameraController extends GetxController with StateMixin {
 
   void _hideRefreshButton() {
     isHideRefreshButton.value = true;
+    AppSnackBar.showSnackBar(
+      AppSnackBarData(
+        title: IntlHelper.snackBarRefreshTitle.tr,
+        message: IntlHelper.snackBarRefreshSubtitle.tr,
+      ),
+    );
     Future.delayed(const Duration(minutes: 1), () {
       isHideRefreshButton.value = false;
     });

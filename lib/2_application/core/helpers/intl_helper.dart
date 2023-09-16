@@ -24,6 +24,8 @@ abstract class IntlHelper {
   static const save = 'save';
   static const savedCameras = 'saved_cameras';
   static const searchCameraHint = 'search_camera_hint';
+  static const snackBarRefreshTitle = 'snack_bar_refresh_title';
+  static const snackBarRefreshSubtitle = 'snack_bar_refresh_subtitle';
   static const splashCaption = 'splash_caption';
 
   // * Last Updated

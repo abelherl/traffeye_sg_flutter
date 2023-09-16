@@ -23,6 +23,8 @@ abstract class IntlEnUs {
     IntlHelper.save: 'Save',
     IntlHelper.savedCameras: 'Saved Cameras',
     IntlHelper.searchCameraHint: 'Search among @count cameras',
+    IntlHelper.snackBarRefreshTitle: 'Refreshing snapshots',
+    IntlHelper.snackBarRefreshSubtitle: 'May not be refreshed because server updates every minute',
     IntlHelper.splashCaption: 'Singapore Traffic Camera Snapshots',
 
     // * Last Updated
