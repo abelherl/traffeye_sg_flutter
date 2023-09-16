@@ -29,16 +29,16 @@ class CameraController extends GetxController with StateMixin {
   void updateSnapshots({bool isHideRefreshButton = true}) async {
     _change(RxStatus.loading());
 
+    if (isHideRefreshButton) _hideRefreshButton();
+
     final either = await trafficCameraUseCases.getRemoteSnapshots();
 
     either.fold((left) {
       _updateAllCamerasValue();
+      _hideRefreshButton(reverse: true);
       _onFailure(left);
     }, (right) {
       _updateAllCamerasValue();
-
-      if (isHideRefreshButton) _hideRefreshButton();
-
       _change(RxStatus.success());
     });
   }
@@ -92,14 +92,21 @@ class CameraController extends GetxController with StateMixin {
     return formattedString;
   }
 
-  void _hideRefreshButton() {
+  void _hideRefreshButton({bool reverse = false}) {
+    if (reverse) {
+      isHideRefreshButton.value = false;
+      return;
+    }
+
     isHideRefreshButton.value = true;
+
     AppSnackBar.showSnackBar(
       AppSnackBarData(
         title: IntlHelper.snackBarRefreshTitle.tr,
         message: IntlHelper.snackBarRefreshSubtitle.tr,
       ),
     );
+
     Future.delayed(const Duration(minutes: 1), () {
       isHideRefreshButton.value = false;
     });
