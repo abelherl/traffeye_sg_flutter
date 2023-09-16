@@ -9,36 +9,15 @@ import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 import 'package:traffeye_sg_flutter/theme.dart';
 
-abstract class AppListCard {
-  static Widget normal(
-      {required Widget child,
-      required Function() onPressed}) {
-    return _NormalAppListCard(onPressed: onPressed, child: child);
-  }
-
-  static Widget profileBasic(
-      {required String title,
-      required Function() onPressed,
-      String suffix = ''}) {
-    return _ProfileBasicListCard(
-        title: title, onPressed: onPressed, suffix: suffix);
-  }
-
-  static Widget profileSwitch(
-      {required String title,
-      required RxBool value}) {
-    return _ProfileSwitchListCard(
-        title: title, value: value);
-  }
-}
+abstract class AppListCard implements Widget {}
 
 // * Base card
 
-class _BaseAppListCard extends StatelessWidget {
+class _BaseSmallAppListCard extends StatelessWidget implements AppListCard {
   final Widget child;
   final Function() onPressed;
 
-  const _BaseAppListCard({
+  const _BaseSmallAppListCard({
     required this.child,
     required this.onPressed,
   });
@@ -47,13 +26,13 @@ class _BaseAppListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(16.w).copyWith(bottom: 0),
-      height: 70.w,
+      height: 50.w,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: StyleHelper.borderRadiusBig,
+        borderRadius: StyleHelper.borderRadiusSmall,
       ),
       child: AppInkWell(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12),
         onPressed: onPressed,
         child: Center(
           child: child,
@@ -65,30 +44,32 @@ class _BaseAppListCard extends StatelessWidget {
 
 // * Card variants
 
-class _NormalAppListCard extends StatelessWidget {
+class NormalAppListCard extends StatelessWidget implements AppListCard {
   final Widget child;
   final Function() onPressed;
 
-  const _NormalAppListCard({
+  const NormalAppListCard({
+    super.key,
     required this.child,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return _BaseAppListCard(
+    return _BaseSmallAppListCard(
       onPressed: onPressed,
       child: child,
     );
   }
 }
 
-class _ProfileBasicListCard extends StatelessWidget {
+class ProfileBasicListCard extends StatelessWidget implements AppListCard {
   final String title;
   final Function() onPressed;
   final String suffix;
 
-  const _ProfileBasicListCard({
+  const ProfileBasicListCard({
+    super.key,
     required this.title,
     required this.onPressed,
     this.suffix = '',
@@ -96,7 +77,7 @@ class _ProfileBasicListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _BaseAppListCard(
+    return _BaseSmallAppListCard(
       onPressed: onPressed,
       child: Row(
         children: [
@@ -122,11 +103,12 @@ class _ProfileBasicListCard extends StatelessWidget {
   }
 }
 
-class _ProfileSwitchListCard extends StatelessWidget {
+class ProfileSwitchListCard extends StatelessWidget {
   final String title;
   final RxBool value;
 
-  const _ProfileSwitchListCard({
+  const ProfileSwitchListCard({
+    super.key,
     required this.title,
     required this.value,
   });
@@ -134,7 +116,7 @@ class _ProfileSwitchListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => _BaseAppListCard(
+      () => _BaseSmallAppListCard(
         onPressed: () => value.toggle(),
         child: Row(
           children: [
@@ -156,3 +138,32 @@ class _ProfileSwitchListCard extends StatelessWidget {
     );
   }
 }
+
+// class _BaseAppListCard extends StatelessWidget {
+//   final Widget child;
+//   final Function() onPressed;
+//
+//   const _BaseAppListCard({
+//     required this.child,
+//     required this.onPressed,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       margin: EdgeInsets.all(16.w).copyWith(bottom: 0),
+//       height: 70.w,
+//       decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: StyleHelper.borderRadiusBig,
+//       ),
+//       child: AppInkWell(
+//         padding: EdgeInsets.symmetric(horizontal: 16.w),
+//         onPressed: onPressed,
+//         child: Center(
+//           child: child,
+//         ),
+//       ),
+//     );
+//   }
+// }

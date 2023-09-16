@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_list_card.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/profile/widgets/details_page.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/profile/widgets/profile_section.dart';
 
 class PersonalizationSection extends StatelessWidget {
@@ -12,11 +13,20 @@ class PersonalizationSection extends StatelessWidget {
     return ProfileSection(
       title: IntlHelper.personalization.tr,
       appListCards: [
-        AppListCard.profileBasic(
+        ProfileBasicListCard(
           title: IntlHelper.cardWidgetsTitle.tr,
-          onPressed: () {},
+          onPressed: () => Get.to(
+            DetailsPage(
+              pageTitle: IntlHelper.cardWidgetsTitle.tr,
+              title: IntlHelper.homeWidgetsTitle.tr,
+              description: IntlHelper.homeWidgetsTexts.tr,
+              cards: [
+                ProfileBasicListCard(title: 'title', onPressed: () {}),
+              ],
+            ),
+          ),
         ),
-        AppListCard.profileBasic(
+        ProfileBasicListCard(
           title: IntlHelper.dashboardLayout.tr,
           suffix: IntlHelper.carousel.tr,
           onPressed: () {},

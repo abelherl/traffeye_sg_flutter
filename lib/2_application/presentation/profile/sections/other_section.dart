@@ -12,11 +12,11 @@ class OtherSection extends StatelessWidget {
     return ProfileSection(
       title: IntlHelper.other.tr,
       appListCards: [
-        AppListCard.profileBasic(
+        ProfileBasicListCard(
           title: IntlHelper.about.tr,
           onPressed: () {},
         ),
-        AppListCard.profileBasic(
+        ProfileBasicListCard(
           title: IntlHelper.donate.tr,
           onPressed: () {},
         ),

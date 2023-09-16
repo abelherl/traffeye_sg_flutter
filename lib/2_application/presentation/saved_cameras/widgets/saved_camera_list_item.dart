@@ -14,7 +14,7 @@ class SavedCameraListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppListCard.normal(
+    return NormalAppListCard(
       onPressed: () => CameraDetailsPopUp.openDialog(camera: camera),
       child: Row(
         children: [

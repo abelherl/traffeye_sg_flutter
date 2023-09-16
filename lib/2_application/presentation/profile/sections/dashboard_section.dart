@@ -13,15 +13,15 @@ class DashboardSection extends StatelessWidget {
     return ProfileSection(
       title: IntlHelper.dashboard.tr,
       appListCards: [
-        AppListCard.profileSwitch(
+        ProfileSwitchListCard(
           title: IntlHelper.savedCameras.tr,
           value: Get.find<CameraController>().isHideRefreshButton,
         ),
-        AppListCard.profileSwitch(
+        ProfileSwitchListCard(
           title: IntlHelper.cardCamerasTitle.tr,
           value: Get.find<CameraController>().isHideRefreshButton,
         ),
-        AppListCard.profileSwitch(
+        ProfileSwitchListCard(
           title: IntlHelper.homeWidgetsTitle.tr,
           value: Get.find<CameraController>().isHideRefreshButton,
         ),
