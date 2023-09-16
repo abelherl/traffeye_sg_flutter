@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/map_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/themed_app_bar.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/unfocuser.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/explore_cameras/widgets/map_view.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/explore_cameras/widgets/search_camera_bottom_sheet.dart';
@@ -26,10 +27,8 @@ class ExploreCamerasPage extends StatelessWidget {
 
     return Unfocuser(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(IntlHelper.cardCamerasTitle.tr),
-          elevation: 0,
-          centerTitle: true,
+        appBar: ThemedAppBar(
+          title: IntlHelper.cardCamerasTitle.tr,
         ),
         body: DraggableBottomSheet(
           minExtent: 110.w,
