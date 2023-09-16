@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_scroll_shadow/flutter_scroll_shadow.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
