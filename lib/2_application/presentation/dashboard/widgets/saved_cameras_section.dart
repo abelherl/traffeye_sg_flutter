@@ -15,34 +15,38 @@ class SavedCamerasSection extends StatelessWidget {
     final appController = Get.find<AppController>();
     final cameraController = Get.find<CameraController>();
 
-    if (!appController.isSavedCamerasActive) {
-      return Container();
-    }
+    return Obx(
+      () {
+        if (!appController.isSavedCamerasActive.value) {
+          return Container();
+        }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ThemedText(
-                IntlHelper.savedCameras.tr,
-                themedTextStyle: ThemedTextStyle.title,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ThemedText(
+                    IntlHelper.savedCameras.tr,
+                    themedTextStyle: ThemedTextStyle.title,
+                  ),
+                  Obx(
+                    () => ThemedText(
+                      cameraController.lastUpdatedString.value,
+                      themedTextStyle: ThemedTextStyle.caption,
+                    ),
+                  ),
+                ],
               ),
-              Obx(
-                () => ThemedText(
-                  cameraController.lastUpdatedString.value,
-                  themedTextStyle: ThemedTextStyle.caption,
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 16.w),
-        const CarouselView(),
-      ],
+            ),
+            SizedBox(height: 16.w),
+            const CarouselView(),
+          ],
+        );
+      }
     );
   }
 }

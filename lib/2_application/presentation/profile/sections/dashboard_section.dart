@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
+import 'package:traffeye_sg_flutter/2_application/controllers/app_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_list_card.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/profile/widgets/profile_section.dart';
@@ -10,20 +10,22 @@ class DashboardSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AppController>();
+    
     return ProfileSection(
       title: IntlHelper.dashboard.tr,
       appListCards: [
         ProfileSwitchListCard(
           title: IntlHelper.savedCameras.tr,
-          value: Get.find<CameraController>().isHideRefreshButton,
+          value: controller.isSavedCamerasActive,
         ),
         ProfileSwitchListCard(
           title: IntlHelper.cardCamerasTitle.tr,
-          value: Get.find<CameraController>().isHideRefreshButton,
+          value: controller.isExploreCamerasActive,
         ),
         ProfileSwitchListCard(
-          title: IntlHelper.homeWidgetsTitle.tr,
-          value: Get.find<CameraController>().isHideRefreshButton,
+          title: IntlHelper.cardWidgetsTitle.tr,
+          value: controller.isHomeWidgetsActive,
         ),
       ],
     );
