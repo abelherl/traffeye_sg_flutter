@@ -16,6 +16,7 @@ class ThemedText extends StatelessWidget {
   final Color? color;
   final TextStyle? textStyle;
   final int? maxLines;
+  final bool isMarkdown;
 
   const ThemedText(
     this.text, {
@@ -24,6 +25,7 @@ class ThemedText extends StatelessWidget {
     this.color,
     this.textStyle,
     this.maxLines,
+    this.isMarkdown = true,
   });
 
   @override
@@ -51,7 +53,18 @@ class ThemedText extends StatelessWidget {
         } else {
           textStyle = textStyle;
         }
-        return SimpleRichText(
+
+        if (isMarkdown) {
+          return SimpleRichText(
+            text,
+            style: textStyle?.copyWith(
+              color: color ?? theme.colorScheme.onBackground,
+            ),
+            maxLines: maxLines,
+          );
+        }
+
+        return Text(
           text,
           style: textStyle?.copyWith(
             color: color ?? theme.colorScheme.onBackground,
