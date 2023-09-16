@@ -14,10 +14,7 @@ class AppController extends GetxController {
   final _isSavedCamerasActive = true.obs;
   final _isExploreCamerasActive = true.obs;
   final _isHomeWidgetsActive = true.obs;
-  final _selectedDashboardLayout = DashboardLayout.carousel.obs;
-  final currentIndex = 0.obs;
-
-  void updateCurrentIndexTo(int index) => currentIndex.value = index;
+  final selectedDashboardLayout = DashboardLayout.carousel.obs;
 
   bool get isSavedCamerasActive => _isSavedCamerasActive.value;
   bool get isExploreCamerasActive => _isExploreCamerasActive.value;
@@ -28,6 +25,6 @@ class AppController extends GetxController {
   void toggleHomeWidgets() => _isHomeWidgetsActive.toggle();
 
   void changeDashboardLayoutTo(DashboardLayout dashboardLayout) {
-    _selectedDashboardLayout.value = dashboardLayout;
+    selectedDashboardLayout.value = dashboardLayout;
   }
 }
