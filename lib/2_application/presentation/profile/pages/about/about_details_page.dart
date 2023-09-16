@@ -38,12 +38,13 @@ class AboutDetailsPage extends StatelessWidget {
     ];
 
     return ProfileDetailsPage(
-        pageTitle: IntlHelper.about.tr,
-        title: IntlHelper.aboutTitle.tr,
-        description: IntlHelper.aboutTexts.tr,
-        cards: data.map((e) =>
-            ProfileRedirectListCard(
-                title: e['title']!.tr,
-                url: e['url']!)).toList());
+      pageTitle: IntlHelper.about.tr,
+      title: IntlHelper.aboutTitle.tr,
+      description: IntlHelper.aboutTexts.tr,
+      cards: data.map((e) =>
+          ProfileRedirectListCard(
+              title: e['title']!.tr,
+              url: e['url']!)).toList(),
+    );
   }
 }
