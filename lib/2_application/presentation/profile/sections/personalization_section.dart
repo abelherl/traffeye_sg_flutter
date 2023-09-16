@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:traffeye_sg_flutter/2_application/controllers/app_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_list_card.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/profile/widgets/profile_details_page.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/profile/pages/dashboard_layout/dashboard_layout_details_page.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/profile/pages/home_widgets/home_widgets_details_page.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/profile/widgets/profile_section.dart';
 
 class PersonalizationSection extends StatelessWidget {
@@ -10,26 +12,21 @@ class PersonalizationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AppController>();
+
     return ProfileSection(
       title: IntlHelper.personalization.tr,
       appListCards: [
         ProfileBasicListCard(
           title: IntlHelper.cardWidgetsTitle.tr,
-          onPressed: () => Get.to(
-            ProfileDetailsPage(
-              pageTitle: IntlHelper.cardWidgetsTitle.tr,
-              title: IntlHelper.homeWidgetsTitle.tr,
-              description: IntlHelper.homeWidgetsTexts.tr,
-              cards: [
-                ProfileBasicListCard(title: 'title', onPressed: () {}),
-              ],
-            ),
-          ),
+          onPressed: () => Get.to(const HomeWidgetsDetails()),
         ),
-        ProfileBasicListCard(
-          title: IntlHelper.dashboardLayout.tr,
-          suffix: IntlHelper.carousel.tr,
-          onPressed: () {},
+        Obx(
+          () => ProfileBasicListCard(
+            title: IntlHelper.dashboardLayout.tr,
+            suffix: controller.selectedDashboardLayout.value.name,
+            onPressed: () => Get.to(const DashboardLayoutDetails()),
+          ),
         ),
       ],
     );
