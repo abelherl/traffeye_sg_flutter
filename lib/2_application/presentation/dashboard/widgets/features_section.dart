@@ -22,27 +22,31 @@ class FeaturesSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (controller.isExploreCamerasActive.value ||
-                controller.isHomeWidgetsActive.value)
+                controller.isHomeWidgetsActive.value)...[
               ThemedText(
                 IntlHelper.features.tr,
                 themedTextStyle: ThemedTextStyle.title,
               ),
-            SizedBox(height: 16.w),
-            if (controller.isExploreCamerasActive.value)
+              SizedBox(height: 16.w),
+            ],
+            if (controller.isExploreCamerasActive.value)...[
               FeaturesCardBase(
                 imagePath: AssetsPathHelper.imagesExplore,
                 title: IntlHelper.cardCamerasTitle.tr,
                 subtitle: IntlHelper.cardCamerasSubtitle.tr,
                 onPressed: () => Get.to(() => const ExploreCamerasPage()),
               ),
-            SizedBox(height: 16.w),
-            if (controller.isHomeWidgetsActive.value)
+              SizedBox(height: 16.w),
+            ],
+            if (controller.isHomeWidgetsActive.value)...[
               FeaturesCardBase(
                 imagePath: AssetsPathHelper.imagesWidget,
                 title: IntlHelper.cardWidgetsTitle.tr,
                 subtitle: IntlHelper.cardWidgetsSubtitle.tr,
                 onPressed: () => Get.to(() => const ExploreCamerasPage()),
               ),
+              SizedBox(height: 80.w),
+            ]
           ],
         ),
       ),

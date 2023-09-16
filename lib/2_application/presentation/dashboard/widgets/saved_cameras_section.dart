@@ -44,6 +44,7 @@ class SavedCamerasSection extends StatelessWidget {
             ),
             SizedBox(height: 16.w),
             const CarouselView(),
+            SizedBox(height: 24.w),
           ],
         );
       }
