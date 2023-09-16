@@ -41,7 +41,7 @@ class _CameraDetailsPopUp extends StatelessWidget {
         child: CameraDetailsContainer(
           children: [
             AspectRatio(
-              aspectRatio: 328 / 190,
+              aspectRatio: 328 / 200,
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
