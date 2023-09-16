@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/saved_cameras_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/themed_app_bar.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/saved_cameras/widgets/saved_cameras_list.dart';
 
@@ -17,10 +18,9 @@ class SavedCamerasPage extends StatelessWidget {
 
     return Obx(
       () => Scaffold(
-        appBar: AppBar(
-          title: Text(IntlHelper.savedCameras.tr),
-          elevation: 0,
-          centerTitle: true,
+        appBar: ThemedAppBar(
+          title: IntlHelper.savedCameras.tr,
+          enableBackButton: false,
         ),
         body: Container(
           height: double.infinity,

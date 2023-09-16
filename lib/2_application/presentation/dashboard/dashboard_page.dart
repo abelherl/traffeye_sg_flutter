@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_scroll_shadow/flutter_scroll_shadow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:traffeye_sg_flutter/2_application/controllers/app_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
-import 'package:traffeye_sg_flutter/2_application/core/widgets/app_scroll_view.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/features_section.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/saved_cameras_section.dart';
 
@@ -12,6 +14,7 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AppController>();
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
@@ -42,22 +45,31 @@ class DashboardPage extends StatelessWidget {
       body: Container(
         height: double.infinity,
         color: colorScheme.background,
-        child: ScrollShadow(
-          size: 15,
-          child: AppScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SavedCamerasSection(),
-                  SizedBox(height: 24.w),
-                  const FeaturesSection(),
-                  SizedBox(height: 80.w),
-                ],
+        child: Obx(
+          () {
+            if (!controller.isSavedCamerasActive.value &&
+                !controller.isExploreCamerasActive.value &&
+                !controller.isHomeWidgetsActive.value) {
+              return WarningWidget(
+                title: IntlHelper.errorNoActivatedSectionsTitle.tr,
+                subtitle: IntlHelper.errorNoActivatedSectionsSubtitle.tr,
+              );
+            }
+
+            return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.w),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SavedCamerasSection(),
+                    FeaturesSection(),
+                  ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
