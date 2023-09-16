@@ -54,7 +54,7 @@ abstract class IntlEnUs {
     IntlHelper.donateTexts: 'Well, there are no obligations for you to donate.\nI specifically made this app as a passion project that will help you as a user while also helping fellow developers because of the open-source nature of this app.\nBut obviously, I will not reject a cup of coffee or a slice of pizza from you!',
     IntlHelper.donateButton: 'Donate through Ko-fi',
     IntlHelper.homeWidgetsTitle: 'Adding Widgets Steps',
-    IntlHelper.homeWidgetsTexts: "To add a widget to view your saved cameras from your phone’s home screen, do these steps:\nGo to the home screen by pressing the home button\nTap and hold at an empty space on the home screen\nTap *Widgets* and find a widget from *TraffEye SG*\nThese steps may vary for some devices.",
+    IntlHelper.homeWidgetsTexts: "To add a widget to view your saved cameras from your phone’s home screen, do these steps:\n\n1. Go to the home screen by pressing the home button\n2. Tap and hold at an empty space on the home screen\n3. Tap *Widgets* and find a widget from *TraffEye SG*\n\nThese steps may vary for some devices.",
     IntlHelper.location: 'Location',
     IntlHelper.locationTitle: 'Uses of Location',
     IntlHelper.locationTexts: 'The selected location will only used for getting the optional weather updates. You can turn off the *Weather* section in the previous page if you don’t need it.',
