@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_list_card.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/profile/widgets/details_page.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/profile/widgets/profile_details_page.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/profile/widgets/profile_section.dart';
 
 class PersonalizationSection extends StatelessWidget {
@@ -16,7 +16,7 @@ class PersonalizationSection extends StatelessWidget {
         ProfileBasicListCard(
           title: IntlHelper.cardWidgetsTitle.tr,
           onPressed: () => Get.to(
-            DetailsPage(
+            ProfileDetailsPage(
               pageTitle: IntlHelper.cardWidgetsTitle.tr,
               title: IntlHelper.homeWidgetsTitle.tr,
               description: IntlHelper.homeWidgetsTexts.tr,

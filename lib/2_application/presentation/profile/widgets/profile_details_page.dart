@@ -5,13 +5,13 @@ import 'package:traffeye_sg_flutter/2_application/core/widgets/app_scroll_view.d
 import 'package:traffeye_sg_flutter/2_application/core/widgets/themed_app_bar.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
-class DetailsPage extends StatelessWidget {
+class ProfileDetailsPage extends StatelessWidget {
   final String pageTitle;
   final String title;
   final String description;
   final List<AppListCard>? cards;
 
-  const DetailsPage(
+  const ProfileDetailsPage(
       {super.key,
       required this.pageTitle,
       required this.title,
