@@ -2,10 +2,14 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/keys_helper.dart';
 
+const _carouselName = 'Carousel';
+const _gridName = 'Grid';
+const _listName = 'List';
+
 enum DashboardLayout {
-  carousel(name: 'Carousel'),
-  grid(name: 'Grid'),
-  list(name: 'List');
+  carousel(name: _carouselName),
+  grid(name: _gridName),
+  list(name: _listName);
 
   const DashboardLayout({required this.name});
 
@@ -13,9 +17,9 @@ enum DashboardLayout {
 
   static DashboardLayout fromString(String string) {
     switch (string) {
-      case 'List':
+      case _listName:
         return DashboardLayout.list;
-      case 'Grid':
+      case _gridName:
         return DashboardLayout.grid;
       default:
         return DashboardLayout.carousel;
@@ -38,6 +42,7 @@ class AppController extends GetxController {
 
   void changeDashboardLayoutTo(DashboardLayout dashboardLayout) {
     selectedDashboardLayout.value = dashboardLayout;
+    _prefs.setString(KeysHelper.selectedDashboardLayout, dashboardLayout.name);
   }
 
   void toggleSavedCameras() {
