@@ -167,7 +167,6 @@ class CameraController extends GetxController with StateMixin {
     _lastUpdated.value = temp;
     lastUpdatedString.value = _getLastUpdated();
 
-    _prefs = await SharedPreferences.getInstance();
     _prefs.setString(KeysHelper.lastUpdatedDateTime, temp.toIso8601String());
   }
 
