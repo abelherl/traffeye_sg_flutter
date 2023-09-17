@@ -6,6 +6,7 @@ import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/camera_carousel_view.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/grid/camera_grid_view.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/list/camera_list_view.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class SavedCamerasSection extends StatelessWidget {
@@ -59,7 +60,7 @@ class SavedCamerasSection extends StatelessWidget {
 
     switch (appController.selectedDashboardLayout.value) {
       case (DashboardLayout.list):
-        return const Placeholder();
+        return const CameraListView();
       case (DashboardLayout.grid):
         return const CameraGridView();
       default:
