@@ -22,39 +22,36 @@ class CameraCarouselCard extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: camera.imageUrl,
       imageBuilder: (context, image) {
-        return AspectRatio(
-          aspectRatio: StyleHelper.ratioCarousel,
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            image: DecorationImage(
+              image: image,
+              fit: BoxFit.fill,
+            ),
+          ),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: borderRadius,
-              image: DecorationImage(
-                image: image,
-                fit: BoxFit.fill,
+              gradient: const LinearGradient(
+                colors: [Colors.transparent, Colors.black54],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [0.5, 1],
               ),
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: borderRadius,
-                gradient: const LinearGradient(
-                  colors: [Colors.transparent, Colors.black54],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.5, 1],
-                ),
-              ),
-              child: AppInkWell(
-                borderRadius: borderRadius,
-                onPressed: () => CameraDetailsPopUp.openDialog(camera: camera),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    camera.getName(),
-                    style: theme.textTheme.displayLarge?.copyWith(
-                      color: colorScheme.onPrimary,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.fade,
+            child: AppInkWell(
+              borderRadius: borderRadius,
+              onPressed: () => CameraDetailsPopUp.openDialog(camera: camera),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  camera.getName(),
+                  style: theme.textTheme.displayLarge?.copyWith(
+                    color: colorScheme.onPrimary,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.fade,
                 ),
               ),
             ),

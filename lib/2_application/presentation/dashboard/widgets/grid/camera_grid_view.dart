@@ -40,6 +40,9 @@ class _GridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CameraController>();
+    final length = controller.savedCameras.isEmpty
+        ? 1
+        : controller.savedCameras.length;
 
     return GridView.builder(
       shrinkWrap: true,
@@ -50,7 +53,7 @@ class _GridView extends StatelessWidget {
         childAspectRatio: StyleHelper.ratioGrid,
       ),
       padding: EdgeInsets.symmetric(horizontal: 16.w),
-      itemCount: controller.savedCameras.length,
+      itemCount: length,
       itemBuilder: (_, index) =>
           CameraGridCard(camera: controller.savedCameras[index]),
     );

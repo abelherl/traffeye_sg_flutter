@@ -17,21 +17,18 @@ class CameraGridCard extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: camera.imageUrl,
       imageBuilder: (context, image) {
-        return AspectRatio(
-          aspectRatio: StyleHelper.ratioCarousel,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              image: DecorationImage(
-                image: image,
-                fit: BoxFit.fill,
-              ),
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            image: DecorationImage(
+              image: image,
+              fit: BoxFit.fill,
             ),
-            child: AppInkWell(
-              borderRadius: borderRadius,
-              onPressed: () => CameraDetailsPopUp.openDialog(camera: camera),
-              child: Container(),
-            ),
+          ),
+          child: AppInkWell(
+            borderRadius: borderRadius,
+            onPressed: () => CameraDetailsPopUp.openDialog(camera: camera),
+            child: Container(),
           ),
         );
       },

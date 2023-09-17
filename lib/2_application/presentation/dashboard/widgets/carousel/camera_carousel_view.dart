@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
-import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/camera_carousel_card.dart';
 
@@ -13,7 +12,6 @@ class CameraCarouselView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = StyleHelper.borderRadiusBig;
     final controller = Get.find<CameraController>();
 
     return controller.obx(
@@ -24,44 +22,41 @@ class CameraCarouselView extends StatelessWidget {
                   title: IntlHelper.errorNoSavedCamerasTitle.tr,
                   subtitle: IntlHelper.errorNoSavedCamerasSubtitle.tr,
                 )
-              : CarouselSlider.builder(
-                  itemCount: controller.savedCameras.length,
-                  itemBuilder: (context, index, _) {
-                    final camera = controller.savedCameras[index];
-                    return CameraCarouselCard(camera: camera);
-                  },
-                  options: _carouselOptions(),
-                ),
+              : _CarouselView(),
         );
       },
       onLoading: Shimmer.fromColors(
         baseColor: Colors.grey.shade300,
         highlightColor: Colors.white,
-        child: CarouselSlider.builder(
-          itemCount: controller.savedCameras.isEmpty
-              ? 1
-              : controller.savedCameras.length,
-          itemBuilder: (_, __, ___) {
-            return Container(
-              decoration: BoxDecoration(
-                borderRadius: borderRadius,
-                color: Colors.white,
-              ),
-            );
-          },
-          options: _carouselOptions(),
-        ),
+        child: _CarouselView(),
       ),
     );
   }
+}
 
-  CarouselOptions _carouselOptions() {
-    return CarouselOptions(
-      autoPlay: false,
-      enlargeCenterPage: true,
-      enlargeFactor: 0.25,
-      viewportFraction: 0.8,
-      aspectRatio: 328 / 164,
+class _CarouselView extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = Get.find<CameraController>();
+    final length = controller.savedCameras.isEmpty
+        ? 1
+        : controller.savedCameras.length;
+
+    return CarouselSlider.builder(
+      itemCount: length,
+      itemBuilder: (context, index, _) {
+        final camera = controller.savedCameras[index];
+        return CameraCarouselCard(camera: camera);
+      },
+      options: CarouselOptions(
+        autoPlay: false,
+        enlargeCenterPage: true,
+        enlargeFactor: 0.25,
+        viewportFraction: 0.8,
+        aspectRatio: 328 / 164,
+      ),
     );
   }
 }
+
