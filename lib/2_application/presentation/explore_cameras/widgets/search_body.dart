@@ -5,7 +5,7 @@ import 'package:traffeye_sg_flutter/2_application/controllers/explore_camera_con
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_scroll_view.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/carousel_card.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/camera_carousel_card.dart';
 
 class SearchBody extends StatelessWidget {
   const SearchBody({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class SearchBody extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: exploreController.searchedCameras.length,
                   separatorBuilder: (_, __) => SizedBox(height: 16.w),
-                  itemBuilder: (context, index) => CarouselCard(
+                  itemBuilder: (context, index) => CameraCarouselCard(
                       camera: exploreController.searchedCameras[index])),
         ),
       ),

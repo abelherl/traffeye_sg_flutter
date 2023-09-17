@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/aspect_ratio_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_ink_well.dart';
 import 'package:traffeye_sg_flutter/2_application/presentation/camera_details/camera_details_pop_up.dart';
 
-class CarouselCard extends StatelessWidget {
+class CameraCarouselCard extends StatelessWidget {
   final TrafficCameraEntity camera;
 
-  const CarouselCard({
+  const CameraCarouselCard({
     Key? key,
     required this.camera,
   }) : super(key: key);
@@ -23,7 +24,7 @@ class CarouselCard extends StatelessWidget {
       imageUrl: camera.imageUrl,
       imageBuilder: (context, image) {
         return AspectRatio(
-          aspectRatio: 328 / 190,
+          aspectRatio: AspectRatioHelper.carousel,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: borderRadius,

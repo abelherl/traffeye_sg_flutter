@@ -6,29 +6,29 @@ import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/carousel_card.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/camera_carousel_card.dart';
 
-class CarouselView extends StatelessWidget {
-  const CarouselView({Key? key}) : super(key: key);
+class CameraCarouselView extends StatelessWidget {
+  const CameraCarouselView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final borderRadius = StyleHelper.borderRadiusBig;
-    final cameraController = Get.find<CameraController>();
+    final controller = Get.find<CameraController>();
 
-    return cameraController.obx(
+    return controller.obx(
       (state) {
         return Obx(
-          () => cameraController.savedCameras.isEmpty
+          () => controller.savedCameras.isEmpty
               ? WarningWidget(
                   title: IntlHelper.errorNoSavedCamerasTitle.tr,
                   subtitle: IntlHelper.errorNoSavedCamerasSubtitle.tr,
                 )
               : CarouselSlider.builder(
-                  itemCount: cameraController.savedCameras.length,
+                  itemCount: controller.savedCameras.length,
                   itemBuilder: (context, index, _) {
-                    final camera = cameraController.savedCameras[index];
-                    return CarouselCard(camera: camera);
+                    final camera = controller.savedCameras[index];
+                    return CameraCarouselCard(camera: camera);
                   },
                   options: _carouselOptions(),
                 ),
@@ -38,9 +38,9 @@ class CarouselView extends StatelessWidget {
         baseColor: Colors.grey.shade300,
         highlightColor: Colors.white,
         child: CarouselSlider.builder(
-          itemCount: cameraController.savedCameras.isEmpty
+          itemCount: controller.savedCameras.isEmpty
               ? 1
-              : cameraController.savedCameras.length,
+              : controller.savedCameras.length,
           itemBuilder: (_, __, ___) {
             return Container(
               decoration: BoxDecoration(
