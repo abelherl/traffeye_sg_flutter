@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/app_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
-import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/carousel_view.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/carousel/camera_carousel_view.dart';
+import 'package:traffeye_sg_flutter/2_application/presentation/dashboard/widgets/grid/camera_grid_view.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class SavedCamerasSection extends StatelessWidget {
@@ -20,6 +21,8 @@ class SavedCamerasSection extends StatelessWidget {
         if (!appController.isSavedCamerasActive.value) {
           return Container();
         }
+
+        late final Widget dashboardLayout = _getDashboardLayout();
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,11 +46,24 @@ class SavedCamerasSection extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.w),
-            const CarouselView(),
+            dashboardLayout,
             SizedBox(height: 24.w),
           ],
         );
       }
     );
+  }
+
+  Widget _getDashboardLayout() {
+    final appController = Get.find<AppController>();
+
+    switch (appController.selectedDashboardLayout.value) {
+      case (DashboardLayout.list):
+        return const Placeholder();
+      case (DashboardLayout.grid):
+        return const CameraGridView();
+      default:
+        return const CameraCarouselView();
+    }
   }
 }
