@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/assets_path_helper.dart';
+import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/widgets/themed_text.dart';
 
 class WarningWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class WarningWidget extends StatelessWidget {
     return Theme(
       data: theme,
       child: AspectRatio(
-        aspectRatio: 328 / 190,
+        aspectRatio: StyleHelper.ratioCarousel,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -6,4 +6,7 @@ abstract class StyleHelper {
   static double radiusBig = 16.r;
   static BorderRadius borderRadiusSmall = BorderRadius.circular(radiusSmall);
   static BorderRadius borderRadiusBig = BorderRadius.circular(radiusBig);
+  static const double ratioCarousel = 328 / 190;
+  static const double ratioGrid = 156 / 110;
+  static const double ratioList = 1;
 }

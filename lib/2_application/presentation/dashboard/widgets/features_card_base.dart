@@ -21,7 +21,7 @@ class FeaturesCardBase extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AspectRatio(
-      aspectRatio: 328 / 190,
+      aspectRatio: StyleHelper.ratioCarousel,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: StyleHelper.borderRadiusBig,
