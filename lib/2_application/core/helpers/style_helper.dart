@@ -8,5 +8,5 @@ abstract class StyleHelper {
   static BorderRadius borderRadiusBig = BorderRadius.circular(radiusBig);
   static const double ratioCarousel = 328 / 190;
   static const double ratioGrid = 156 / 110;
-  static const double ratioList = 1;
+  static const double ratioList = 328 / 150;
 }
