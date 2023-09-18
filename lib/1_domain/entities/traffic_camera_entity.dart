@@ -40,6 +40,15 @@ class TrafficCameraEntity with EquatableMixin {
     );
   }
 
+  factory TrafficCameraEntity.empty() {
+    return TrafficCameraEntity(
+      cameraId: '',
+      timestamp: DateTime.now(),
+      imageUrl: 'https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/indizone/2021/08/02/d5soREV/video-klip-rick-roll-dari-rick-astley-sudah-ditonton-1-miliar-kali-di-youtube55.jpg',
+      location: LocationEntity(id: '', longitude: 0, latitude: 0),
+    );
+  }
+
   TrafficCameraEntity copyWith(
       {String? customName,
       bool? isSaved,
