@@ -1,5 +1,6 @@
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/saved_cameras_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/app_list_card.dart';
@@ -16,7 +17,7 @@ class SavedCamerasList extends StatelessWidget {
         child: DragAndDropLists(
           itemDragOnLongPress: false,
           disableScrolling: true,
-          lastItemTargetHeight: 0,
+          lastItemTargetHeight: 100.w,
           children: [
             DragAndDropList(
               canDrag: false,
