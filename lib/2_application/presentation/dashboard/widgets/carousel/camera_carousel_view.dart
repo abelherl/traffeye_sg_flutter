@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/widgets/warning_widget.dart';
@@ -39,14 +40,14 @@ class _CarouselView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CameraController>();
-    final length = controller.savedCameras.isEmpty
-        ? 1
-        : controller.savedCameras.length;
+    final cameras = controller.savedCameras.isEmpty
+        ? [TrafficCameraEntity.empty()]
+        : controller.savedCameras;
 
     return CarouselSlider.builder(
-      itemCount: length,
+      itemCount: cameras.length,
       itemBuilder: (context, index, _) {
-        final camera = controller.savedCameras[index];
+        final camera = cameras[index];
         return CameraCarouselCard(camera: camera);
       },
       options: CarouselOptions(

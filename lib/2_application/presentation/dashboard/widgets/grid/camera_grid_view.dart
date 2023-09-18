@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/intl_helper.dart';
 import 'package:traffeye_sg_flutter/2_application/core/helpers/style_helper.dart';
@@ -40,9 +41,9 @@ class _GridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CameraController>();
-    final length = controller.savedCameras.isEmpty
-        ? 1
-        : controller.savedCameras.length;
+    final cameras = controller.savedCameras.isEmpty
+        ? List.generate(4, (index) => TrafficCameraEntity.empty())
+        : controller.savedCameras;
 
     return GridView.builder(
       shrinkWrap: true,
@@ -53,9 +54,9 @@ class _GridView extends StatelessWidget {
         childAspectRatio: StyleHelper.ratioGrid,
       ),
       padding: EdgeInsets.symmetric(horizontal: 16.w),
-      itemCount: length,
+      itemCount: cameras.length,
       itemBuilder: (_, index) =>
-          CameraGridCard(camera: controller.savedCameras[index]),
+          CameraGridCard(camera: cameras[index]),
     );
   }
 }
