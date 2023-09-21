@@ -17,14 +17,15 @@ abstract class IntlEnUs {
     IntlHelper.errorNoSavedCamerasSubtitle: 'Add a saved camera through *Explore Cameras*',
     IntlHelper.errorNoCamerasFoundTitle: 'No Cameras Found',
     IntlHelper.errorNoCamerasFoundSubtitle: 'Try using a different keyword',
+    IntlHelper.errorNoCamerasSubtitle: 'Please refresh the cameras first',
     IntlHelper.features: 'Features',
     IntlHelper.grid: 'Grid',
     IntlHelper.list: 'List',
     IntlHelper.save: 'Save',
     IntlHelper.savedCameras: 'Saved Cameras',
     IntlHelper.searchCameraHint: 'Search among @count cameras',
-    IntlHelper.snackBarRefreshTitle: 'Refreshing snapshots',
-    IntlHelper.snackBarRefreshSubtitle: 'May not be refreshed because server updates every minute',
+    IntlHelper.snackBarRefreshTitle: 'No New Snapshots',
+    IntlHelper.snackBarRefreshSubtitle: 'Already up to date with the server, try again later',
     IntlHelper.splashCaption: 'Singapore Traffic Camera Snapshots',
 
     // * Last Updated

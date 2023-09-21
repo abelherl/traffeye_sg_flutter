@@ -18,6 +18,7 @@ abstract class IntlHelper {
   static const errorNoSavedCamerasSubtitle = 'error_no_saved_cameras_subtitle';
   static const errorNoCamerasFoundTitle = 'error_no_cameras_found_title';
   static const errorNoCamerasFoundSubtitle = 'error_no_cameras_found_subtitle';
+  static const errorNoCamerasSubtitle = 'error_no_cameras_subtitle';
   static const features = 'features';
   static const grid = 'grid';
   static const list = 'list';
