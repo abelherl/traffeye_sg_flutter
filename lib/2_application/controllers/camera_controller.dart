@@ -41,7 +41,6 @@ class CameraController extends GetxController with StateMixin {
       _onFailure(left);
     }, (right) {
       _updateAllCamerasValue();
-
     });
   }
 
@@ -108,13 +107,6 @@ class CameraController extends GetxController with StateMixin {
 
     isHideRefreshButton.value = true;
 
-    AppSnackBar.showSnackBar(
-      AppSnackBarData(
-        title: IntlHelper.snackBarRefreshTitle.tr,
-        message: IntlHelper.snackBarRefreshSubtitle.tr,
-      ),
-    );
-
     Future.delayed(const Duration(minutes: 1), () {
       isHideRefreshButton.value = false;
     });
@@ -159,6 +151,14 @@ class CameraController extends GetxController with StateMixin {
   void _updateLastUpdated({DateTime? dateTime}) async {
     if (dateTime == _lastUpdated.value) {
       _hideRefreshButton(reverse: true);
+
+      AppSnackBar.showSnackBar(
+        AppSnackBarData(
+          title: IntlHelper.snackBarRefreshTitle.tr,
+          message: IntlHelper.snackBarRefreshSubtitle.tr,
+        ),
+      );
+
       return;
     }
 
