@@ -1,11 +1,11 @@
 <div align="center">
-  <img height="200" src="https://lh3.googleusercontent.com/U0za4Ehbbxua7VWEghZs2Zax2O_W0eoNz1Bs4qgBoKxoX5sOKvzv_CWiv711ZrVcaA"  />
-</div>
-
-###
-
-<div align="center">
-  <a href="https://github.com/abelherl" target="_blank">
+<!--   <img height="170" src="https://lh3.googleusercontent.com/U0za4Ehbbxua7VWEghZs2Zax2O_W0eoNz1Bs4qgBoKxoX5sOKvzv_CWiv711ZrVcaA"  /><br><br> -->
+  <img src="https://raw.githubusercontent.com/abelherl/traffeye_sg_flutter/develop/assets/images/img_qr.png" width="170" alt="qrn"  /><br>
+  <a href="https://play.google.com/store/apps/details?id=com.abelherl.traffeye&pcampaignid=web_share" target="_blank">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200" alt="play store button"  />
+  </a><br>
+  
+  <a href="https://www.linkedin.com/in/abelherl" target="_blank">
     <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="linkedin logo"  />
   </a>
   <a href="https://ko-fi.com/abelherl" target="_blank">
