@@ -49,7 +49,8 @@ class MyApp extends StatelessWidget {
               theme: AppTheme.lightTheme,
               debugShowCheckedModeBanner: false,
               translationsKeys: AppTranslation.translationsKeys,
-              locale: Get.deviceLocale,
+              locale: const Locale('en', 'US'),
+              fallbackLocale: const Locale('en', 'US'),
               home: const SplashScreenPage(),
             );
           },
