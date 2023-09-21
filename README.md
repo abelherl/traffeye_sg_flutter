@@ -1,5 +1,6 @@
 <div align="center">
 <!--   <img height="170" src="https://lh3.googleusercontent.com/U0za4Ehbbxua7VWEghZs2Zax2O_W0eoNz1Bs4qgBoKxoX5sOKvzv_CWiv711ZrVcaA"  /><br><br> -->
+  <img width="100%" src="https://raw.githubusercontent.com/abelherl/traffeye_sg_flutter/develop/assets/images/App%20Banner%203.png"><br><br><br>
   <img src="https://raw.githubusercontent.com/abelherl/traffeye_sg_flutter/develop/assets/images/img_qr.png" width="170" alt="qrn"  /><br>
   <a href="https://play.google.com/store/apps/details?id=com.abelherl.traffeye&pcampaignid=web_share" target="_blank">
     <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200" alt="play store button"  />
