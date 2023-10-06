@@ -44,7 +44,9 @@ class CameraCarouselCard extends StatelessWidget {
               ),
               child: AppInkWell(
                 borderRadius: borderRadius,
-                onPressed: () => CameraDetailsPopUp.openDialog(camera: camera),
+                onPressed: () => camera.cameraId.isEmpty
+                    ? null
+                    : CameraDetailsPopUp.openDialog(camera: camera),
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
