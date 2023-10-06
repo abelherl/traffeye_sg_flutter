@@ -49,7 +49,7 @@ class CameraController extends GetxController with StateMixin {
     final either = trafficCameraUseCases.updateCamera(camera);
 
     either.fold(
-        (left) => _onFailure(left), (right) => _updateAllCamerasValue());
+        (left) => _onFailure(left), (right) => _updateAllCamerasValue(isCheckLastUpdated: false));
 
     callback();
   }
@@ -121,7 +121,7 @@ class CameraController extends GetxController with StateMixin {
         const Duration(minutes: 1), (Timer t) => _updateLastUpdated());
   }
 
-  void _updateAllCamerasValue() {
+  void _updateAllCamerasValue({bool isCheckLastUpdated = true}) {
     final either1 = trafficCameraUseCases.getLocalSnapshots();
 
     either1.fold((left) => _onFailure(left), (right) {
@@ -143,13 +143,13 @@ class CameraController extends GetxController with StateMixin {
 
     savedCameras.sort((a, b) => a.sortIndex!.compareTo(b.sortIndex!));
 
-    _updateLastUpdated(dateTime: cameras.firstOrNull?.timestamp);
+    _updateLastUpdated(dateTime: cameras.firstOrNull?.timestamp, isCheckLastUpdated: isCheckLastUpdated,);
 
     _change(RxStatus.success());
   }
 
-  void _updateLastUpdated({DateTime? dateTime}) async {
-    if (dateTime == _lastUpdated.value) {
+  void _updateLastUpdated({DateTime? dateTime, bool isCheckLastUpdated = true}) async {
+    if (dateTime == _lastUpdated.value && isCheckLastUpdated) {
       _hideRefreshButton(reverse: true);
 
       AppSnackBar.showSnackBar(
