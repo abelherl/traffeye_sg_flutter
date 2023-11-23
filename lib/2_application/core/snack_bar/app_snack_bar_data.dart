@@ -8,7 +8,7 @@ class AppSnackBarData {
 
   factory AppSnackBarData.fromFailure(Failure failure) {
     switch (failure) {
-      case ConnectionFailure():
+      case ServerFailure():
         return const AppSnackBarData(
           title: 'Connection Error',
           message: 'Please check your internet connection',

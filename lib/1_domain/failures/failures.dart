@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 sealed class Failure {}
 
-class ConnectionFailure extends Failure with EquatableMixin {
+class ServerFailure extends Failure with EquatableMixin {
   @override
   List<Object?> get props => [];
 }

@@ -13,10 +13,10 @@ class TrafficCameraModel extends TrafficCameraEntity with EquatableMixin {
   factory TrafficCameraModel.fromJson(Map json) {
     try {
       return TrafficCameraModel(
-      timestamp: DateTime.parse(json['timestamp']),
-      imageUrl: json['image'],
-      location: LocationEntity.fromJson(json['camera_id'], json['location']),
-      cameraId: json['camera_id'],
+        timestamp: DateTime.parse(json['timestamp']),
+        imageUrl: json['image'],
+        location: LocationEntity.fromJson(json['camera_id'], json['location']),
+        cameraId: json['camera_id'],
       );
     } catch (e) {
       throw TypeException();

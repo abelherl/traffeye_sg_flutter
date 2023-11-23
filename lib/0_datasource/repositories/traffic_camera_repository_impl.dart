@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:either_dart/either.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:traffeye_sg_flutter/0_datasource/datasources/traffic_camera_datasource.dart';
+import 'package:traffeye_sg_flutter/0_datasource/exceptions/exceptions.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/location_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/failures/failures.dart';
@@ -23,7 +24,7 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
       final result = await trafficCameraDatasource.fetchSnapshotsFromRemote();
 
       for (final camera in result) {
-        final camerasBox = camerasBoxList.firstWhereOrNull((element) => element.cameraId == camera.cameraId);
+        TrafficCameraEntity? camerasBox = camerasBoxList.firstWhereOrNull((element) => element.cameraId == camera.cameraId);
         final lat = camera.location.latitude;
         final long = camera.location.longitude;
         final placemarks = await placemarkFromCoordinates(lat, long);
@@ -35,7 +36,7 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
           longitude: long,
         );
 
-        final updatedCamera = (camerasBox ?? camera).copyWith(
+        final updatedCamera = (camerasBox ?? TrafficCameraEntity.fromModel(camera, location: location)).copyWith(
           imageUrl: camera.imageUrl,
           timestamp: camera.timestamp,
           location: location,
@@ -45,8 +46,10 @@ class TrafficCameraRepositoryImpl implements TrafficCameraRepository {
         trafficCameraDatasource.update(updatedCamera);
       }
       return Right(cameras);
+    } on ServerException catch (_) {
+      return Left(ServerFailure());
     } catch (_) {
-      return Left(ConnectionFailure());
+      return Left(GeneralFailure());
     }
   }
 
