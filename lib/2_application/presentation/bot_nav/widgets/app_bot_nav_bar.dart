@@ -21,31 +21,34 @@ class AppBotNavBar extends StatelessWidget {
       AssetsPathHelper.filledProfile,
     ];
 
-    return Obx(
-      () => DotNavigationBar(
-        currentIndex: controller.index.value,
-        backgroundColor: theme.colorScheme.primary,
-        dotIndicatorColor: theme.colorScheme.tertiary,
-        splashColor: Colors.transparent,
-        onTap: (index) => onTap(index),
-        marginR: EdgeInsets.symmetric(vertical: 18.w, horizontal: 50.w),
-        paddingR: EdgeInsets.symmetric(vertical: 6.w, horizontal: 16.w),
-        itemPadding: EdgeInsets.fromLTRB(16.w, 10.w, 16.w, 13.w),
-        enablePaddingAnimation: false,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black26,
-            offset: Offset(0, 3),
-            blurRadius: 12,
-            spreadRadius: 2,
-          )
-        ],
-        borderRadius: 160.r,
-        items: icons.map(
-          (icon) => DotNavigationBarItem(
-            icon: SvgPicture.asset(icon),
-          ),
-        ).toList(),
+    return Padding(
+      padding: EdgeInsets.only(bottom: 28.w),
+      child: Obx(
+        () => DotNavigationBar(
+          currentIndex: controller.index.value,
+          backgroundColor: theme.colorScheme.primary,
+          dotIndicatorColor: theme.colorScheme.tertiary,
+          splashColor: Colors.transparent,
+          onTap: (index) => onTap(index),
+          marginR: EdgeInsets.symmetric(vertical: 18.w, horizontal: 50.w),
+          paddingR: EdgeInsets.symmetric(vertical: 6.w, horizontal: 16.w),
+          itemPadding: EdgeInsets.fromLTRB(16.w, 10.w, 16.w, 13.w),
+          enablePaddingAnimation: false,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 3),
+              blurRadius: 12,
+              spreadRadius: 2,
+            )
+          ],
+          borderRadius: 160.r,
+          items: icons.map(
+            (icon) => DotNavigationBarItem(
+              icon: SvgPicture.asset(icon),
+            ),
+          ).toList(),
+        ),
       ),
     );
   }
