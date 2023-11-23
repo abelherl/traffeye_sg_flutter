@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.0
   carousel_slider: ^4.2.1
   collection: any
   device_preview: ^1.1.0
