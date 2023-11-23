@@ -1,0 +1,3 @@
+abstract class ResponseHelper {
+  static const trafficCameraRemoteDatasource = '{"items":[{"timestamp":"2023-11-23T11:37:32+08:00","cameras":[{"timestamp":"2023-11-23T11:36:32+08:00","image":"https://images.data.gov.sg/api/traffic-images/2023/11/ea6a2d89-a6c8-4a5b-a04a-653bed06308c.jpg","location":{"latitude":1.29531332,"longitude":103.871146},"camera_id":"1001","image_metadata":{"height":240,"width":320,"md5":"27178164026a12bb8b99cfa0f4d734d8"}}]}]}';
+}

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:http/http.dart';
 import 'package:traffeye_sg_flutter/0_datasource/exceptions/exceptions.dart';
 import 'package:traffeye_sg_flutter/0_datasource/models/traffic_camera_model.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
@@ -17,38 +18,45 @@ abstract class TrafficCameraDatasource {
 
 class TrafficCameraDatasourceImpl extends GetConnect
     implements TrafficCameraDatasource {
-  final _box = Hive.box<TrafficCameraEntity>(BoxTagsHelper.cameras);
+
+  final Client client;
+  final Box<TrafficCameraEntity> box;
+
+  TrafficCameraDatasourceImpl({required this.client, required this.box});
 
   @override
   Future<List<TrafficCameraModel>> fetchSnapshotsFromRemote() async {
-    final response = await get(ApiHelper.trafficImagesUrl);
+    try {
+      final response = await client.get(ApiHelper.trafficImagesUrl);
 
-    if (response.statusCode != 200) {
-      throw ServerException();
-    } else {
-      final Map<String, dynamic> responseBody =
-          json.decode(response.bodyString!);
-      final List<dynamic> body = responseBody['items'][0]['cameras'];
-      List<TrafficCameraModel> cameras = [];
+      if (response.statusCode != 200) {
+        throw ServerException();
+      } else {
+        final Map<String, dynamic> responseBody = json.decode(response.body);
+        final List<dynamic> body = responseBody['items'][0]['cameras'];
+        List<TrafficCameraModel> cameras = [];
 
-      for (final camera in body) {
-        cameras.add(TrafficCameraModel.fromJson(camera));
+        for (final camera in body) {
+          cameras.add(TrafficCameraModel.fromJson(camera));
+        }
+
+        return cameras;
       }
-
-      return cameras;
+    } catch (e) {
+      throw ServerException();
     }
   }
 
   @override
   List<TrafficCameraEntity> fetchSnapshotsFromLocal() {
-    final cameras = _box.values.toList();
+    final cameras = box.values.toList();
     return cameras;
   }
 
   @override
   void update(TrafficCameraEntity camera) async {
     try {
-      _box.put(camera.cameraId, camera);
+      box.put(camera.cameraId, camera);
     } catch (_) {
       throw CacheExceptions();
     }
