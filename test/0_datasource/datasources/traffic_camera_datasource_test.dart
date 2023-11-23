@@ -23,7 +23,6 @@ void main() {
     final mockClient = MockClient();
     final mockHiveBox = MockBox<TrafficCameraEntity>();
     final mockHiveInterface = MockHiveInterface();
-    const responseBody = ResponseHelper.trafficCameraRemoteDatasource;
 
     when(mockHiveInterface.openBox(BoxTagsHelper.cameras))
         .thenAnswer((_) async => mockHiveBox);
@@ -33,6 +32,7 @@ void main() {
 
     group('should return a list of TrafficCameraModel', () {
       test('when Client response is 200 and has valid data', () async {
+        const responseBody = ResponseHelper.trafficCameraRemoteDatasourceValid;
         final decoded = json.decode(responseBody);
         final List<dynamic> body = decoded['items'][0]['cameras'];
 
@@ -52,12 +52,21 @@ void main() {
     });
 
     group('should throw an exception', () {
-      test('when Client response is not 200', () async {
-        final matcher = throwsA(isA<ServerException>());
+      test('when Client response is 200 but has no valid data', () async {
+        const responseBody = ResponseHelper.trafficCameraRemoteDatasourceInvalid;
 
+        when(mockClient.get(ApiHelper.trafficImagesUrl)).thenAnswer(
+                (realInvocation) => Future.value(Response(responseBody, 200)));
+
+        final matcher = throwsA(isA<TypeException>());
+        expect(() => datasource.fetchSnapshotsFromRemote(), matcher);
+      });
+
+      test('when Client response is not 200', () async {
         when(mockClient.get(ApiHelper.trafficImagesUrl))
             .thenAnswer((realInvocation) => Future.value(Response('', 201)));
 
+        final matcher = throwsA(isA<ServerException>());
         expect(() => datasource.fetchSnapshotsFromRemote(), matcher);
       });
     });

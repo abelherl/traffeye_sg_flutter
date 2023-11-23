@@ -26,24 +26,20 @@ class TrafficCameraDatasourceImpl extends GetConnect
 
   @override
   Future<List<TrafficCameraModel>> fetchSnapshotsFromRemote() async {
-    try {
-      final response = await client.get(ApiHelper.trafficImagesUrl);
+    final response = await client.get(ApiHelper.trafficImagesUrl);
 
-      if (response.statusCode != 200) {
-        throw ServerException();
-      } else {
-        final Map<String, dynamic> responseBody = json.decode(response.body);
-        final List<dynamic> body = responseBody['items'][0]['cameras'];
-        List<TrafficCameraModel> cameras = [];
-
-        for (final camera in body) {
-          cameras.add(TrafficCameraModel.fromJson(camera));
-        }
-
-        return cameras;
-      }
-    } catch (e) {
+    if (response.statusCode != 200) {
       throw ServerException();
+    } else {
+      final Map<String, dynamic> responseBody = json.decode(response.body);
+      final List<dynamic> body = responseBody['items'][0]['cameras'];
+      List<TrafficCameraModel> cameras = [];
+
+      for (final camera in body) {
+        cameras.add(TrafficCameraModel.fromJson(camera));
+      }
+
+      return cameras;
     }
   }
 
@@ -58,7 +54,7 @@ class TrafficCameraDatasourceImpl extends GetConnect
     try {
       box.put(camera.cameraId, camera);
     } catch (_) {
-      throw CacheExceptions();
+      throw CacheException();
     }
   }
 
@@ -69,7 +65,7 @@ class TrafficCameraDatasourceImpl extends GetConnect
         update(camera);
       }
     } catch (_) {
-      throw CacheExceptions();
+      throw CacheException();
     }
   }
 }
