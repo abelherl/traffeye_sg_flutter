@@ -3,6 +3,7 @@
 *.log
 *.pyc
 *.swp
+*.mocks.dart
 .DS_Store
 .atom/
 .buildlog/
