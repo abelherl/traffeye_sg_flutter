@@ -11,6 +11,7 @@ import 'package:traffeye_sg_flutter/0_datasource/repositories/traffic_camera_rep
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/failures/failures.dart';
 
+import '../../3_helpers/mock_helper.dart';
 import '../../3_helpers/response_helper.dart';
 import 'traffic_camera_repositories_test.mocks.dart';
 
@@ -24,24 +25,13 @@ void main() {
     group('should return Right with a list of TrafficCameraEntities', () {
       test('when TrafficCameraDatasource returns a list of TrafficCameraModels',
           () async {
-        const responseBody = ResponseHelper.trafficCameraRemoteDatasourceValid;
-        final decoded = json.decode(responseBody);
-        final List<dynamic> body = decoded['items'][0]['cameras'];
-
-        List<TrafficCameraEntity> entities = [];
-
-        for (final camera in body) {
-          final model = TrafficCameraModel.fromJson(camera);
-          entities.add(
-              TrafficCameraEntity.fromModel(model, location: model.location));
-        }
-
+        final entities = MockHelper.mockCameras();
         final result = await repositories.getSnapshotsFromRemote();
 
         expect(result.isLeft, false);
         expect(result.isRight, true);
         expect(result, isA<Right<Failure, List<TrafficCameraEntity>>>());
-        containsValue(entities.first);
+        containsValue(entities);
       });
     });
 
