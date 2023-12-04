@@ -1,18 +1,14 @@
-import 'dart:convert';
-
 import 'package:either_dart/either.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:traffeye_sg_flutter/0_datasource/datasources/traffic_camera_datasource.dart';
 import 'package:traffeye_sg_flutter/0_datasource/exceptions/exceptions.dart';
-import 'package:traffeye_sg_flutter/0_datasource/models/traffic_camera_model.dart';
 import 'package:traffeye_sg_flutter/0_datasource/repositories/traffic_camera_repository_impl.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/failures/failures.dart';
 
 import '../../3_helpers/mock_helper.dart';
-import '../../3_helpers/response_helper.dart';
 import 'traffic_camera_repositories_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<TrafficCameraDatasourceImpl>()])
@@ -28,8 +24,8 @@ void main() {
         final entities = MockHelper.mockCameras();
         final result = await repositories.getSnapshotsFromRemote();
 
-        expect(result.isLeft, false);
-        expect(result.isRight, true);
+        expect(result.isLeft, isFalse);
+        expect(result.isRight, isTrue);
         expect(result, isA<Right<Failure, List<TrafficCameraEntity>>>());
         containsValue(entities);
       });
@@ -42,8 +38,8 @@ void main() {
 
         final result = await repositories.getSnapshotsFromRemote();
 
-        expect(result.isLeft, true);
-        expect(result.isRight, false);
+        expect(result.isLeft, isTrue);
+        expect(result.isRight, isFalse);
         expect(
             result, Left<Failure, List<TrafficCameraEntity>>(ServerFailure()));
       });
@@ -53,8 +49,8 @@ void main() {
 
         final result = await repositories.getSnapshotsFromRemote();
 
-        expect(result.isLeft, true);
-        expect(result.isRight, false);
+        expect(result.isLeft, isTrue);
+        expect(result.isRight, isFalse);
         expect(
             result, Left<Failure, List<TrafficCameraEntity>>(GeneralFailure()));
       });

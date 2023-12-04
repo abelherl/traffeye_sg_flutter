@@ -25,8 +25,8 @@ void main() {
 
         final result = await usecases.getRemoteSnapshots();
 
-        expect(result.isLeft, false);
-        expect(result.isRight, true);
+        expect(result.isLeft, isFalse);
+        expect(result.isRight, isTrue);
         expect(result, isA<Right<Failure, List<TrafficCameraEntity>>>());
         containsValue(entities);
       });

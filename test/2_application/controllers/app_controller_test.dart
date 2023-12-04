@@ -11,9 +11,9 @@ void main() {
     group('onInit() should initiate valid values', () {
       test('when prefs are empty', () async {
         Get.put<AppController>(controller);
-        expect(controller.isSavedCamerasActive.value, true);
-        expect(controller.isExploreCamerasActive.value, true);
-        expect(controller.isHomeWidgetsActive.value, true);
+        expect(controller.isSavedCamerasActive.value, isTrue);
+        expect(controller.isExploreCamerasActive.value, isTrue);
+        expect(controller.isHomeWidgetsActive.value, isTrue);
         expect(
             controller.selectedDashboardLayout.value, DashboardLayout.carousel);
       });
