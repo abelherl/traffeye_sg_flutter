@@ -50,14 +50,15 @@ class TrafficCameraEntity with EquatableMixin {
   }
 
   TrafficCameraEntity copyWith(
-      {String? customName,
+      {String? cameraId,
+      String? customName,
       bool? isSaved,
       LocationEntity? location,
       String? imageUrl,
       DateTime? timestamp,
       int? sortIndex}) {
     return TrafficCameraEntity(
-      cameraId: cameraId,
+      cameraId: cameraId ?? this.cameraId,
       timestamp: timestamp ?? this.timestamp,
       imageUrl: imageUrl ?? this.imageUrl,
       location: location ?? this.location,
