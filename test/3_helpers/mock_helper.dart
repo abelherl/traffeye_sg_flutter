@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:traffeye_sg_flutter/0_datasource/models/traffic_camera_model.dart';
+import 'package:traffeye_sg_flutter/1_domain/entities/location_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/failures/failures.dart';
 import 'package:traffeye_sg_flutter/1_domain/usecases/traffic_camera_usecases.dart';
@@ -31,6 +32,10 @@ abstract class MockHelper {
     }
 
     return entities;
+  }
+
+  static LocationEntity mockLocation() {
+    return mockCameras().first.location;
   }
 
   static void provideCamerasDummy(
