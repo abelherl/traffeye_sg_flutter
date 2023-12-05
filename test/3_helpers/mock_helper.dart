@@ -1,10 +1,14 @@
 import 'dart:convert';
 
 import 'package:either_dart/either.dart';
+import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:traffeye_sg_flutter/0_datasource/models/traffic_camera_model.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
 import 'package:traffeye_sg_flutter/1_domain/failures/failures.dart';
+import 'package:traffeye_sg_flutter/1_domain/usecases/traffic_camera_usecases.dart';
+import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 
 import '../1_domain/usecases/traffic_camera_usecases_test.mocks.dart';
 import 'response_helper.dart';
@@ -56,5 +60,21 @@ abstract class MockHelper {
         .thenAnswer((realInvocation) => Right(updatedEntities));
     when(repositories.updateCamera(updatedEntities.first))
         .thenAnswer((realInvocation) => Right(updatedEntities));
+  }
+
+  static generateCameraController(
+      {List<TrafficCameraEntity>? entities, TrafficCameraEntity? newEntity}) {
+    final repositories = MockTrafficCameraRepositoryImpl();
+
+    MockHelper.initiateMockRepositories(
+      repositories: repositories,
+      entities: entities ?? MockHelper.mockCameras(),
+      newEntity: newEntity,
+    );
+
+    SharedPreferences.setMockInitialValues({});
+
+    Get.put(TrafficCameraUseCases(trafficCameraRepository: repositories));
+    Get.put(CameraController());
   }
 }

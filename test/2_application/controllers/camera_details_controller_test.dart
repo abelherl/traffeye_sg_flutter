@@ -3,11 +3,9 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:test/test.dart';
 import 'package:traffeye_sg_flutter/1_domain/entities/traffic_camera_entity.dart';
-import 'package:traffeye_sg_flutter/1_domain/usecases/traffic_camera_usecases.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_controller.dart';
 import 'package:traffeye_sg_flutter/2_application/controllers/camera_details_controller.dart';
 
-import '../../1_domain/usecases/traffic_camera_usecases_test.mocks.dart';
 import '../../3_helpers/mock_helper.dart';
 
 void main() {
@@ -72,19 +70,10 @@ void main() {
       }
 
       test('when called', () async {
-        final repositories = MockTrafficCameraRepositoryImpl();
-
         camera.value.customName = 'Test';
         camera.value.isSaved = true;
 
-        MockHelper.initiateMockRepositories(
-          repositories: repositories,
-          entities: MockHelper.mockCameras(),
-          newEntity: camera.value,
-        );
-
-        Get.put(TrafficCameraUseCases(trafficCameraRepository: repositories));
-        Get.put(CameraController());
+        MockHelper.generateCameraController(newEntity: camera.value);
 
         final cameraController = Get.find<CameraController>();
         final callback = Completer();
