@@ -8,9 +8,7 @@ import '../../3_helpers/mock_helper.dart';
 void main() {
   group('ExploreCameraController', () {
     final controller = ExploreCameraController();
-    List<TrafficCameraEntity> cameras = MockHelper.mockCameras();
-
-    cameras.add(TrafficCameraEntity.empty().copyWith(customName: 'QWERTY'));
+    List<TrafficCameraEntity> cameras = MockHelper.mockSavedCameras();
 
     MockHelper.generateCameraController(entities: cameras);
 

@@ -34,6 +34,15 @@ abstract class MockHelper {
     return entities;
   }
 
+  static List<TrafficCameraEntity> mockSavedCameras() {
+    List<TrafficCameraEntity> cameras = mockCameras();
+
+    cameras.add(TrafficCameraEntity.empty()
+        .copyWith(cameraId: '1002', customName: 'QWERTY', isSaved: true));
+
+    return cameras;
+  }
+
   static LocationEntity mockLocation() {
     return mockCameras().first.location;
   }
