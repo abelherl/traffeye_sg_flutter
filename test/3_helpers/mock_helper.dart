@@ -19,8 +19,11 @@ abstract class MockHelper {
 
     for (final camera in body) {
       final model = TrafficCameraModel.fromJson(camera);
-      entities
-          .add(TrafficCameraEntity.fromModel(model, location: model.location));
+      TrafficCameraEntity entity =
+          TrafficCameraEntity.fromModel(model, location: model.location);
+      entity.customName = 'Custom Name';
+      entity.isSaved = true;
+      entities.add(entity);
     }
 
     return entities;
@@ -33,18 +36,25 @@ abstract class MockHelper {
 
   static void initiateMockRepositories(
       {required MockTrafficCameraRepositoryImpl repositories,
-      required List<TrafficCameraEntity> entities}) {
+      required List<TrafficCameraEntity> entities,
+      TrafficCameraEntity? newEntity}) {
     provideDummy<Either<Failure, List<TrafficCameraEntity>>>(Right(entities));
 
+    List<TrafficCameraEntity> updatedEntities = entities;
+
+    if (newEntity != null) {
+      updatedEntities.first = newEntity;
+    }
+
     when(repositories.getSnapshotsFromRemote())
-        .thenAnswer((realInvocation) => Future.value(Right(entities)));
+        .thenAnswer((realInvocation) => Future.value(Right(updatedEntities)));
     when(repositories.getSnapshotsFromLocal())
-        .thenAnswer((realInvocation) => Right(entities));
+        .thenAnswer((realInvocation) => Right(updatedEntities));
     when(repositories.getLocalSavedCameras())
-        .thenAnswer((realInvocation) => Right(entities));
-    when(repositories.updateAllCameras(entities))
-        .thenAnswer((realInvocation) => Right(entities));
-    when(repositories.updateCamera(entities.first))
-        .thenAnswer((realInvocation) => Right(entities));
+        .thenAnswer((realInvocation) => Right(updatedEntities));
+    when(repositories.updateAllCameras(updatedEntities))
+        .thenAnswer((realInvocation) => Right(updatedEntities));
+    when(repositories.updateCamera(updatedEntities.first))
+        .thenAnswer((realInvocation) => Right(updatedEntities));
   }
 }
