@@ -30,7 +30,7 @@ void main() {
         expect(controller.isChanged.value, isChangedMatcher);
       }
 
-      test('when called', () async {
+      test('when called and reverted', () async {
         final oldCustomName = camera.value.customName!;
         const newCustomName = 'Test';
 
@@ -52,7 +52,7 @@ void main() {
         expect(controller.isChanged.value, isChangedMatcher);
       }
 
-      test('when called', () async {
+      test('when called and reverted', () async {
         final isSaved = camera.value.isSaved;
 
         isSavedChecker(isSaved: isSaved, isChangedMatcher: isFalse);
